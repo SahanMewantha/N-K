@@ -4,7 +4,7 @@ const ContactSection = () => {
   return (
     <section 
       id="contact" 
-      className="h-screen flex items-center justify-center bg-black/55"
+      className="h-screen flex items-center justify-center bg-black/80"
     >
       <motion.div
         initial={{ opacity: 0, y: 100 }}

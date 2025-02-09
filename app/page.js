@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, MotionConfig } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AboutSection from "./components/AboutSection";
@@ -16,22 +16,24 @@ const Home = () => {
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
-    section?.scrollIntoView({ behavior: 'smooth' });
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="h-screen overflow-y-scroll" ref={scrollRef}>
       <Header onNavClick={scrollToSection} />
-
       <motion.div
         className="fixed inset-0 bg-black z-0"
         style={{ opacity }}
       ></motion.div>
 
       <div className="relative z-10 pt-16">
-        <HomeSection/>
+        {/* Pass onNavClick to HomeSection */}
+        <HomeSection onNavClick={scrollToSection} />
         <AboutSection />
-        <ServicesSection />
+        <ServicesSection id="services" />
         <ContactSection />
       </div>
 
@@ -39,6 +41,5 @@ const Home = () => {
     </div>
   );
 };
-
 
 export default Home;

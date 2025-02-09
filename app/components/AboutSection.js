@@ -4,7 +4,7 @@ const AboutSection = () => {
   return (
     <section 
       id="about" 
-      className="h-screen flex items-center justify-center bg-black/45"
+      className="h-screen flex items-center justify-center bg-black"
     >
       <motion.div
         initial={{ opacity: 0, x: -100 }}

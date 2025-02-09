@@ -1,11 +1,11 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { motion, MotionConfig } from "framer-motion";
-import { 
-  Home as HomeIcon, 
-  Info as AboutIcon, 
-  Wrench as ServiceIcon, 
-  Mail as ContactIcon, 
+import {
+  Home as HomeIcon,
+  Info as AboutIcon,
+  Wrench as ServiceIcon,
+  Mail as ContactIcon,
   X,
   Facebook,
   Instagram,
@@ -50,16 +50,16 @@ const Header = ({ onNavClick }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleNavClick = (section) => {
-    onNavClick(section);
+    onNavClick(section); // Scroll to the section
     setIsMenuOpen(false);
   };
 
@@ -67,14 +67,14 @@ const Header = ({ onNavClick }) => {
     { icon: HomeIcon, label: "Home", section: "home" },
     { icon: AboutIcon, label: "About", section: "about" },
     { icon: ServiceIcon, label: "Services", section: "services" },
-    { icon: ContactIcon, label: "Contact", section: "contact" }
+    { icon: ContactIcon, label: "Contact", section: "contact" },
   ];
 
   const socialItems = [
     { icon: Facebook, url: "#" },
     { icon: Instagram, url: "#" },
     { icon: Linkedin, url: "#" },
-    { icon: Twitter, url: "#" }
+    { icon: Twitter, url: "#" },
   ];
 
   if (isMobile) {
@@ -104,7 +104,12 @@ const Header = ({ onNavClick }) => {
                 <motion.span
                   variants={VARIANTS.middle}
                   className="absolute h-1 w-6 bg-white"
-                  style={{ left: "50%", x: "-50%", top: "50%", y: "-50%" }}
+                  style={{
+                    left: "50%",
+                    x: "-50%",
+                    top: "50%",
+                    y: "-50%",
+                  }}
                 />
                 <motion.span
                   variants={VARIANTS.bottom}
@@ -122,7 +127,7 @@ const Header = ({ onNavClick }) => {
         </MotionConfig>
 
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
@@ -140,7 +145,7 @@ const Header = ({ onNavClick }) => {
                   <span>{label}</span>
                 </motion.button>
               ))}
-              
+
               <div className="flex space-x-6 mt-8">
                 {socialItems.map(({ icon: Icon, url }, index) => (
                   <motion.a
@@ -164,7 +169,7 @@ const Header = ({ onNavClick }) => {
   }
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -179,7 +184,7 @@ const Header = ({ onNavClick }) => {
           {navItems.map(({ icon: Icon, label, section }) => (
             <motion.button
               key={section}
-              onClick={() => onNavClick(section)}
+              onClick={() => handleNavClick(section)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="text-white flex items-center space-x-2 hover:text-blue-300"
