@@ -63,6 +63,10 @@ const Header = ({ onNavClick }) => {
     setIsMenuOpen(false);
   };
 
+  const handleBrandClick = () => {
+    onNavClick("home"); // Scroll to the home section
+  };
+
   const navItems = [
     { icon: HomeIcon, label: "Home", section: "home" },
     { icon: AboutIcon, label: "About", section: "about" },
@@ -176,8 +180,14 @@ const Header = ({ onNavClick }) => {
       className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm"
     >
       <nav className="container mx-auto flex justify-between items-center p-4">
+        
         {/* Brand name on the left */}
-        <div className="text-2xl font-bold text-white">MyBrand</div>
+        <div
+          onClick={handleBrandClick}
+          className="text-2xl font-bold text-white cursor-pointer"
+        >
+          MyBrand
+        </div>
 
         {/* Navigation items in the middle */}
         <div className="flex flex-grow justify-center space-x-6">

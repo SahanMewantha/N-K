@@ -36,7 +36,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br bg-black/90 py-4">
+    <section id="services"  className="min-h-screen bg-gradient-to-br bg-black/90 py-4">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
