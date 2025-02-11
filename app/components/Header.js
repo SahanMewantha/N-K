@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import {
@@ -6,6 +5,7 @@ import {
   Info as AboutIcon,
   Wrench as ServiceIcon,
   Mail as ContactIcon,
+  Camera as GalleryIcon, // Add Gallery Icon
   X,
   Facebook,
   Instagram,
@@ -71,6 +71,7 @@ const Header = ({ onNavClick }) => {
     { icon: HomeIcon, label: "Home", section: "home" },
     { icon: AboutIcon, label: "About", section: "about" },
     { icon: ServiceIcon, label: "Services", section: "services" },
+    { icon: GalleryIcon, label: "Gallery", section: "gallery" }, // Add Gallery
     { icon: ContactIcon, label: "Contact", section: "contact" },
   ];
 
@@ -177,11 +178,20 @@ const Header = ({ onNavClick }) => {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
     >
-      <nav className="container mx-auto flex justify-between items-center p-4">
-        
-        {/* Brand name on the left */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url("/header1.jpg")', // Background image URL
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.7,
+        }}
+      />
+      <div className="absolute inset-0 bg-black/50" />
+
+      <nav className="container mx-auto flex justify-between items-center p-4 relative z-10">
         <div
           onClick={handleBrandClick}
           className="text-2xl font-bold text-white cursor-pointer"
@@ -189,7 +199,6 @@ const Header = ({ onNavClick }) => {
           MyBrand
         </div>
 
-        {/* Navigation items in the middle */}
         <div className="flex flex-grow justify-center space-x-6">
           {navItems.map(({ icon: Icon, label, section }) => (
             <motion.button
@@ -205,7 +214,6 @@ const Header = ({ onNavClick }) => {
           ))}
         </div>
 
-        {/* Social icons on the right */}
         <div className="flex space-x-6">
           {socialItems.map(({ icon: Icon, url }, index) => (
             <motion.a

@@ -8,6 +8,7 @@ import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
 import ContactSection from "./components/ContactSection";
 import HomeSection from "./components/HomeSection";
+import Gallery from "./components/Gallery";
 
 const Home = () => {
   const scrollRef = useRef(null);
@@ -34,7 +35,9 @@ const Home = () => {
         <HomeSection onNavClick={scrollToSection} />
         <AboutSection />
         <ServicesSection id="services" />
+        <Gallery/>
         <ContactSection />
+        
       </div>
 
       <Footer />
