@@ -1,13 +1,15 @@
 "use client";
+import dynamic from 'next/dynamic';
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import AboutSection from "./components/AboutSection";
-import ServicesSection from "./components/ServicesSection";
-import ContactSection from "./components/ContactSection";
-import HomeSection from "./components/HomeSection";
-import Gallery from "./components/Gallery";
+const Header = dynamic(() => import('./components/Header'), { ssr: false });
+const Footer = dynamic(() => import('./components/Footer'), { ssr: false });
+const AboutSection = dynamic(() => import('./components/AboutSection'), { ssr: false });
+const ServicesSection = dynamic(() => import('./components/ServicesSection'), { ssr: false });
+const ContactSection = dynamic(() => import('./components/ContactSection'), { ssr: false });
+const HomeSection = dynamic(() => import('./components/HomeSection'), { ssr: false });
+const Gallery = dynamic(() => import('./components/Gallery'), { ssr: false });
+
 
 const page = () => {
   const scrollRef = useRef(null);
