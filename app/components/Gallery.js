@@ -102,20 +102,20 @@ const Gallery = () => {
     {
       id: 1,
       title: "Kitchen Deep Clean",
-      beforeImage: "/header.jpg",
-      afterImage: "/header1.jpg"
+      beforeImage: "/1bf.png",
+      afterImage: "/1af.png"
     },
     {
       id: 2,
       title: "Living Room Transformation",
-      beforeImage: "/bac.jpg",
-      afterImage: "/bac1.jpg"
+      beforeImage: "/2bf.png",
+      afterImage: "/2af.png"
     },
     {
       id: 3,
       title: "Bathroom Renovation",
-      beforeImage: "/8625596.jpg",
-      afterImage: "/pexels-johannes-plenio-3131634.jpg"
+      beforeImage: "/3bf.png",
+      afterImage: "/3af.png"
     },
     // Add more projects as needed
   ];
