@@ -34,7 +34,7 @@ const page = () => {
   };
 
   return (
-    <div className="h-screen overflow-y-scroll" ref={scrollRef}>
+    <div className="h-screen overflow-y-scroll overflow-x-hidden w-full" ref={scrollRef}>
       <Header onNavClick={scrollToSection} />
       <motion.div
         className="fixed inset-0 bg-black z-0"
