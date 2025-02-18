@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AboutSection from "./components/AboutSection";
@@ -10,9 +9,9 @@ import ContactSection from "./components/ContactSection";
 import HomeSection from "./components/HomeSection";
 import Gallery from "./components/Gallery";
 
-const Home = () => {
+const page = () => {
   const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({ container: scrollRef });
+  const { scrollYProgress } = typeof window !== 'undefined' ? useScroll({ container: scrollRef }) : { scrollYProgress: null };
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   const scrollToSection = (sectionId) => {
@@ -45,4 +44,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default page;

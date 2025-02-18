@@ -13,7 +13,7 @@ const HomeSection = ({ onNavClick }) => {
         transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
       >
         <img
-          src="/bac1.jpg"
+          src="/public/"
           alt="Cleaning Service Background"
           className="w-full h-full object-cover"
         />
