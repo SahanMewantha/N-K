@@ -38,7 +38,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="min-h-screen bg-gradient-to-br from-black/90 to-black py-16">
+    <section id="services" className="min-h-screen bg-gradient-to-br from-[#454545] via-black to-[#262626] py-16">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <motion.div
@@ -47,7 +47,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#174fde] mb-4">
             Our Services
           </h2>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />

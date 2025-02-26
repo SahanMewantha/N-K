@@ -121,7 +121,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section id='gallery' className="min-h-screen bg-gray-900 py-16 px-4">
+    <section id='gallery' className="min-h-screen bg-gradient-to-br from-[#454545] via-black to-[#262626] py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ const Gallery = () => {
         className="container mx-auto"
       >
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#174fde] mb-4">
             Our Transformations
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">

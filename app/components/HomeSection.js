@@ -29,7 +29,7 @@ const HomeSection = ({ onNavClick }) => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-bold text-white mb-4">
-            Welcome to <span className="text-blue-400">N&K Spotless Solutions</span>
+            Welcome to <span className=" text-[#1941b4]">N&K Spotless Solutions</span>
           </h1>
         </motion.div>
 

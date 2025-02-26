@@ -12,7 +12,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-black py-16 px-4">
+    <section id="contact" className="min-h-screen bg-gradient-to-br from-[#454545] via-black to-[#262626] py-16">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

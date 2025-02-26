@@ -1,9 +1,10 @@
 "use client";
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
 // Dynamically import components that might rely on browser APIs
 import dynamic from "next/dynamic";
+import Loader from "./components/Loader"; // Import the Loader component
+
 const Header = dynamic(() => import("./components/Header"), { ssr: false });
 const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
 const AboutSection = dynamic(() => import("./components/AboutSection"), { ssr: false });
@@ -14,15 +15,16 @@ const HomeSection = dynamic(() => import("./components/HomeSection"), { ssr: fal
 
 const page = () => {
   const scrollRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true); // State to manage loading state
 
-  // Ensure useScroll and useTransform only run on the client side
-  const { scrollYProgress } = typeof window !== 'undefined'
-    ? useScroll({ container: scrollRef })
-    : { scrollYProgress: null };
+  // Simulate a loading delay (e.g., for data fetching or rendering)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Set loading to false after 2 seconds
+    }, 3000); // Adjust the delay as needed
 
-  const opacity = scrollYProgress
-    ? useTransform(scrollYProgress, [0, 1], [1, 0])
-    : null;
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
 
   const scrollToSection = (sectionId) => {
     if (typeof window !== 'undefined') {
@@ -33,23 +35,50 @@ const page = () => {
     }
   };
 
+  // Ensure useScroll only runs on the client side
+  const { scrollYProgress } = typeof window !== 'undefined'
+    ? useScroll({ container: scrollRef })
+    : { scrollYProgress: null };
+
   return (
-    <div className="h-screen overflow-y-scroll overflow-x-hidden w-full" ref={scrollRef}>
-      <Header onNavClick={scrollToSection} />
-      <motion.div
-        className="fixed inset-0 bg-black z-0"
-        style={{ opacity: opacity || 1 }} // Default opacity to 1 on the server
-      ></motion.div>
-      <div className="relative z-10 pt-16">
-        {/* Pass onNavClick to HomeSection */}
-        <HomeSection onNavClick={scrollToSection} />
-        <AboutSection />
-        <ServicesSection id="services" />
-        <Gallery />
-        <ContactSection />
-      </div>
-      <Footer />
-    </div>
+    <>
+      {/* Loading Screen */}
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <Loader />
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }} // Start hidden and slightly below
+            animate={{ opacity: 1, y: 0 }} // Animate to visible and centered
+            transition={{ duration: 1, delay: 0.5 }} // Add a delay for effect
+            className="mt-36 text-3xl font-bold text-[#174fde]"
+          >
+            N&K Spotless Solutions
+          </motion.h1>
+        </div>
+      )}
+
+      {/* Main Content */}
+      {!isLoading && (
+        <div className="h-screen overflow-x-hidden w-full" ref={scrollRef}>
+          {/* Static Background */}
+          <motion.div
+            className="fixed inset-0 z-0 bg-black"
+          ></motion.div>
+
+          {/* Content */}
+          <div className="relative z-10 pt-16">
+            {/* Pass onNavClick to HomeSection */}
+            <Header onNavClick={scrollToSection} />
+            <HomeSection onNavClick={scrollToSection} />
+            <AboutSection />
+            <ServicesSection id="services" />
+            <Gallery />
+            <ContactSection />
+          </div>
+          <Footer />
+        </div>
+      )}
+    </>
   );
 };
 
