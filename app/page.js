@@ -16,6 +16,7 @@ const HomeSection = dynamic(() => import("./components/HomeSection"), { ssr: fal
 const page = () => {
   const scrollRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true); // State to manage loading state
+  
 
   // Simulate a loading delay (e.g., for data fetching or rendering)
   useEffect(() => {
