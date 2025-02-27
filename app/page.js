@@ -75,8 +75,9 @@ const page = () => {
             <ServicesSection id="services" />
             <Gallery />
             <ContactSection />
+            <Footer />
           </div>
-          <Footer />
+          
         </div>
       )}
     </>

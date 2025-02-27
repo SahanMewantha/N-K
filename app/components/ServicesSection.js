@@ -11,7 +11,7 @@ const ServiceCard = ({ title, index }) => (
     className="bg-black/40 backdrop-blur-lg rounded-lg p-6 text-center border border-white/10 hover:bg-black/50 transition-all cursor-pointer"
   >
     <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-    <div className="w-12 h-1 bg-blue-500 mx-auto rounded-full mb-3" />
+    <div className="w-12 h-1 bg-[#fddb12] mx-auto rounded-full mb-3" />
     <p className="text-gray-300 text-sm">
       Tailored {title.toLowerCase()} solutions for your needs.
     </p>
@@ -55,16 +55,16 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 text-roboto"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#174fde] mb-4">
             Our Services
           </h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full" />
         </motion.div>
 
         {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto ">
           {services.map((service, index) => (
             <ServiceCard key={index} title={service} index={index} />
           ))}
