@@ -67,7 +67,7 @@ const BeforeAfterCard = ({ beforeImage, afterImage, title }) => {
           alt="After"
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-4 left-4 bg-blue-500/50 px-3 py-1 rounded text-white text-sm">
+        <div className="absolute top-4 left-4 bg-[#ffeb3b] px-3 py-1 rounded text-[#432405] text-sm">
           After
         </div>
       </div>
@@ -129,9 +129,17 @@ const Gallery = () => {
         className="container mx-auto"
       >
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#174fde] mb-4">
-            Our Transformations
-          </h2>
+          <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12 text-roboto"
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#174fde] mb-4">
+                    Our Transformations
+                    </h2>
+                    <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full" />
+                  </motion.div>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Swipe or drag to see the difference our cleaning services make
           </p>

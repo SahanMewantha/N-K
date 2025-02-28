@@ -20,8 +20,18 @@ const ContactSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center text-white mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
+           <motion.div
+                              initial={{ opacity: 0, y: -20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.6 }}
+                              className="text-center mb-12 text-roboto"
+                            >
+                              <h2 className="text-4xl md:text-5xl font-bold text-[#174fde] mb-4">
+                              Get In Touch
+                              </h2>
+                              <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full" />
+                            </motion.div>
+          
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">

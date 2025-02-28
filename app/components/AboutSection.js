@@ -33,7 +33,8 @@ const AboutSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 md:mx-16 text-[#174fde]">
             About Our Journey
           </h2>
-          <p className="text-lg md:text-xl max-w-lg md:mx-16 mr-6">
+          <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full" />
+          <p className="text-lg md:text-xl max-w-lg md:mx-16 mr-6 mt-8">
             N&K Spotless Solutions was founded in 2024 with the goal of providing
             top-notch cleaning services to homes and businesses. Our team is dedicated
             to creating spotless environments using environmentally friendly products
