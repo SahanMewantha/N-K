@@ -8,7 +8,7 @@ const ServiceCard = ({ title, index }) => (
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     whileHover={{ scale: 1.05 }}
-    className="bg-black/40 backdrop-blur-lg rounded-lg p-6 text-center border border-white/10 hover:bg-black/50 transition-all cursor-pointer"
+    className="bg-black/25 backdrop-blur-lg rounded-lg p-6 text-center border border-white/10 hover:bg-black/50 transition-all cursor-pointer"
   >
     <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
     <div className="w-12 h-1 bg-[#fddb12] mx-auto rounded-full mb-3" />

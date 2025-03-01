@@ -1,5 +1,9 @@
+"use client"
 import { Roboto, Playfair_Display } from 'next/font/google'
 import "./globals.css";
+import dynamic from "next/dynamic";
+const Header = dynamic(() => import("./components/Header"), { ssr: false });
+const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
 
 const roboto = Roboto({
   weight: ['400', '700'], // Specify the weights you need
@@ -17,8 +21,11 @@ export default function RootLayout({ children }) {
       <body
       className={`${roboto.variable} ${playfair.variable}`}
       >
+        <Header/>
         {children}
+        
       </body>
+      
     </html>
   );
 }

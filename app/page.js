@@ -68,14 +68,13 @@ const page = () => {
 
           {/* Content */}
           <div className="relative z-10 pt-16">
-            {/* Pass onNavClick to HomeSection */}
-            <Header onNavClick={scrollToSection} />
+            
             <HomeSection onNavClick={scrollToSection} />
             <AboutSection />
             <ServicesSection id="services" />
             <Gallery />
             <ContactSection />
-            <Footer />
+            <Footer/>
           </div>
           
         </div>

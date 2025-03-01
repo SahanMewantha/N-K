@@ -1,5 +1,7 @@
+"use client"
 import React, { useState, useEffect } from "react";
 import { motion, MotionConfig } from "framer-motion";
+import Link from 'next/link';
 import {
   Home as HomeIcon,
   Info as AboutIcon,
@@ -10,7 +12,7 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Twitter
+  Twitter,
 } from "lucide-react";
 
 const VARIANTS = {
@@ -46,7 +48,7 @@ const VARIANTS = {
   },
 };
 
-const Header = ({ onNavClick }) => {
+const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -58,21 +60,12 @@ const Header = ({ onNavClick }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleNavClick = (section) => {
-    onNavClick(section); // Scroll to the section
-    setIsMenuOpen(false);
-  };
-
-  const handleBrandClick = () => {
-    onNavClick("home"); // Scroll to the home section
-  };
-
   const navItems = [
-    { icon: HomeIcon, label: "Home", section: "home" },
-    { icon: AboutIcon, label: "About", section: "about" },
-    { icon: ServiceIcon, label: "Services", section: "services" },
-    { icon: GalleryIcon, label: "Gallery", section: "gallery" }, // Add Gallery
-    { icon: ContactIcon, label: "Contact", section: "contact" },
+    { icon: HomeIcon, label: "Home", path: "/" },
+    { icon: AboutIcon, label: "About", path: "/about" },
+    { icon: ServiceIcon, label: "Services", path: "/services" },
+    { icon: GalleryIcon, label: "Gallery", path: "/gallery" }, // Add Gallery
+    { icon: ContactIcon, label: "Contact", path: "/contact" },
   ];
 
   const socialItems = [
@@ -139,16 +132,15 @@ const Header = ({ onNavClick }) => {
             className="fixed inset-0 z-40 bg-black/90 text-white"
           >
             <div className="flex flex-col items-center justify-center h-full space-y-8">
-              {navItems.map(({ icon: Icon, label, section }) => (
-                <motion.button
-                  key={section}
-                  onClick={() => handleNavClick(section)}
+              {navItems.map(({ icon: Icon, label, path }) => (
+                <Link
+                key={path}
+                  href={path} // Use the `to` prop for navigation
                   className="text-3xl flex items-center space-x-4"
-                  whileTap={{ scale: 0.95 }}
                 >
                   <Icon size={30} />
                   <span>{label}</span>
-                </motion.button>
+                </Link>
               ))}
 
               <div className="flex space-x-6 mt-8">
@@ -175,72 +167,67 @@ const Header = ({ onNavClick }) => {
 
   return (
     <motion.header
-  initial={{ opacity: 0, y: -50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
-  className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg"
->
-  {/* Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent" />
-
-  <nav className="container mx-auto flex justify-between items-center p-4 relative z-10">
-    {/* Logo and Brand Name */}
-    <div
-      onClick={handleBrandClick}
-      className="flex items-center space-x-2 cursor-pointer"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg"
     >
-      {/* Circular Logo with Gradient */}
-      <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
-        <img
-          src="/logo.jpeg" // Replace with your logo image path
-          alt="Logo"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent" />
 
-      {/* Brand Name with Stacked Text */}
-      <div className="text-white font-bold text-xl flex flex-col">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-          N&K
-        </span>
-        <span className="text-sm text-gray-300">Spotless Solutions</span>
-      </div>
-    </div>
+      <nav className="container mx-auto flex justify-between items-center p-4 relative z-10">
+        {/* Logo and Brand Name */}
+        <div className="flex items-center space-x-2 cursor-pointer">
+          {/* Circular Logo with Gradient */}
+          <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
+            <img
+              src="/logo.jpeg" // Replace with your logo image path
+              alt="Logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-    {/* Navigation Items */}
-    <div className="flex flex-grow justify-center space-x-6">
-      {navItems.map(({ icon: Icon, label, section }) => (
-        <motion.button
-          key={section}
-          onClick={() => handleNavClick(section)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="text-white flex items-center space-x-2 hover:text-blue-300 transition-all"
-        >
-          <Icon size={20} />
-          <span>{label}</span>
-        </motion.button>
-      ))}
-    </div>
+          {/* Brand Name with Stacked Text */}
+          <div className="text-white font-bold text-xl flex flex-col">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              N&K
+            </span>
+            <span className="text-sm text-gray-300">Spotless Solutions</span>
+          </div>
+        </div>
 
-    {/* Social Media Icons */}
-    <div className="flex space-x-4">
-      {socialItems.map(({ icon: Icon, url }, index) => (
-        <motion.a
-          key={index}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          className="text-white hover:text-blue-400 transition-colors"
-        >
-          <Icon size={24} />
-        </motion.a>
-      ))}
-    </div>
-  </nav>
-</motion.header>
+        {/* Navigation Items */}
+        <div className="flex flex-grow justify-center space-x-6">
+          {navItems.map(({ icon: Icon, label, path }) => (
+            <Link
+            key={path}
+              href={path} // Use the `to` prop for navigation
+              className="text-white flex items-center space-x-2 hover:text-blue-300 transition-all"
+            >
+              <Icon size={20} />
+              <span>{label}</span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Social Media Icons */}
+        <div className="flex space-x-4">
+          {socialItems.map(({ icon: Icon, url }, index) => (
+            <motion.a
+              key={index}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              className="text-white hover:text-blue-400 transition-colors"
+            >
+              <Icon size={24} />
+            </motion.a>
+          ))}
+        </div>
+      </nav>
+    </motion.header>
   );
 };
 
