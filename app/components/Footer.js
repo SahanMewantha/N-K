@@ -1,11 +1,8 @@
-import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <motion.footer 
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+    <footer 
+      
       className="bg-black text-white py-8"
     >
       <div className="container mx-auto grid md:grid-cols-3 gap-8 text-center">
@@ -34,9 +31,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center mt-4 text-sm">
-        © 2024 MyBrand. All Rights Reserved.
+        © 2025 MyBrand. All Rights Reserved.
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 

@@ -2,8 +2,9 @@
 import { Roboto, Playfair_Display } from 'next/font/google'
 import "./globals.css";
 import dynamic from "next/dynamic";
+import Footer from './components/Footer';
 const Header = dynamic(() => import("./components/Header"), { ssr: false });
-const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
+
 
 const roboto = Roboto({
   weight: ['400', '700'], // Specify the weights you need
@@ -23,7 +24,6 @@ export default function RootLayout({ children }) {
       >
         <Header/>
         {children}
-        
       </body>
       
     </html>
