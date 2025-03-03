@@ -64,7 +64,7 @@ const Header = () => {
     { icon: HomeIcon, label: "Home", path: "/" },
     { icon: AboutIcon, label: "About", path: "/about" },
     { icon: ServiceIcon, label: "Services", path: "/services" },
-    { icon: GalleryIcon, label: "Gallery", path: "/gallery" }, // Add Gallery
+    { icon: GalleryIcon, label: "Our Projects", path: "/projects" }, 
     { icon: ContactIcon, label: "Contact", path: "/contact" },
   ];
 
