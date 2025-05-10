@@ -134,8 +134,9 @@ const Header = () => {
             <div className="flex flex-col items-center justify-center h-full space-y-8">
               {navItems.map(({ icon: Icon, label, path }) => (
                 <Link
-                key={path}
+                  key={path}
                   href={path} // Use the `to` prop for navigation
+                  onClick={() => setIsMenuOpen(false)} 
                   className="text-3xl flex items-center space-x-4"
                 >
                   <Icon size={30} />
