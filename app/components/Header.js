@@ -135,7 +135,7 @@ const Header = () => {
               {navItems.map(({ icon: Icon, label, path }) => (
                 <Link
                   key={path}
-                  href={path} // Use the `to` prop for navigation
+                  href={path}
                   onClick={() => setIsMenuOpen(false)} 
                   className="text-3xl flex items-center space-x-4"
                 >
