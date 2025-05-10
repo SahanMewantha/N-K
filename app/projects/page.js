@@ -71,7 +71,7 @@ const ProjectsPage = () => {
       ],
     },
   ];
-
+ 
   // Handler to open lightbox
   const openLightbox = (projectId, imageIndex) => {
     const project = projects.find((p) => p.id === projectId);
