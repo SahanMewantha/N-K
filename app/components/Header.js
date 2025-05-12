@@ -7,7 +7,7 @@ import {
   Info as AboutIcon,
   Wrench as ServiceIcon,
   Mail as ContactIcon,
-  Camera as GalleryIcon, // Add Gallery Icon
+  Camera as GalleryIcon,
   X,
   Facebook,
   Instagram,

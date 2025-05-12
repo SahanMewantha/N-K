@@ -1,8 +1,17 @@
+"use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Building2, Dumbbell, Briefcase, School, ShoppingBag, Window, Home, Factory, Building, Warehouse, FileCheck, House, Brush, Settings, Columns2 } from "lucide-react";
 
 // Service Card Component
 const ServiceCard = ({ title, index }) => {
+    const router = useRouter();
+    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+    const handleClick = () => {
+      router.push(`/services/slug?title=${encodeURIComponent(title)}`);
+    };
+
   // Get appropriate icon based on service type
   const getServiceIcon = (title) => {
     if (title.includes("Body Corporate")) return <Building2 size={24} className="text-[#58A6FF]" />;
@@ -25,7 +34,9 @@ const ServiceCard = ({ title, index }) => {
   };
 
   return (
-    <div className="group bg-[#333333] rounded-lg p-6 overflow-hidden relative shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-[#58A6FF]">
+    <div
+    onClick={handleClick} 
+    className="cursor-pointer group bg-[#333333] rounded-lg p-6 overflow-hidden relative shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-[#58A6FF]">
       {/* Accent corner */}
       <div className="absolute top-0 right-0 w-16 h-16 bg-[#232f8e] transform rotate-12 translate-x-6 -translate-y-6"></div>
       
