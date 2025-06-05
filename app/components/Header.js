@@ -182,7 +182,7 @@ const Header = () => {
           {/* Circular Logo with Gradient */}
           <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
             <img
-              src="/logo.jpeg" // Replace with your logo image path
+              src="/logo.jpg" // Replace with your logo image path
               alt="Logo"
               className="w-full h-full object-cover"
             />
