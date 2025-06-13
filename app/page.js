@@ -1,30 +1,28 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
-// Dynamically import components that might rely on browser APIs
+
 import dynamic from "next/dynamic";
 import Loader from "./components/Loader"; // Import the Loader component
-
-const Header = dynamic(() => import("./components/Header"), { ssr: false });
-const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
-const AboutSection = dynamic(() => import("./components/AboutSection"), { ssr: false });
-const ServicesSection = dynamic(() => import("./components/ServicesSection"), { ssr: false });
-const ContactSection = dynamic(() => import("./components/ContactSection"), { ssr: false });
-const Gallery = dynamic(() => import("./components/Gallery"), { ssr: false });
-const HomeSection = dynamic(() => import("./components/HomeSection"), { ssr: false });
+import HomeSection from "./components/HomeSection";
+const Footer = dynamic(() => import("./components/Footer"));
+const AboutSection = dynamic(() => import("./components/AboutSection"));
+const ServicesSection = dynamic(() => import("./components/ServicesSection"));
+const ContactSection = dynamic(() => import("./components/ContactSection"));
+const Gallery = dynamic(() => import("./components/Gallery"));
 
 const page = () => {
   const scrollRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true); // State to manage loading state
   
 
-  // Simulate a loading delay (e.g., for data fetching or rendering)
+  
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false); // Set loading to false after 2 seconds
-    }, 3000); // Adjust the delay as needed
+      setIsLoading(false); 
+    }, 1500); 
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
+    return () => clearTimeout(timer); 
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -36,7 +34,6 @@ const page = () => {
     }
   };
 
-  // Ensure useScroll only runs on the client side
   const { scrollYProgress } = typeof window !== 'undefined'
     ? useScroll({ container: scrollRef })
     : { scrollYProgress: null };
