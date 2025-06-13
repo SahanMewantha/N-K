@@ -9,6 +9,7 @@ const HomeSection = ({ onNavClick }) => {
   const shouldAnimate = !reducedMotion;
   return (
     <section 
+    
       id="home" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Home section"

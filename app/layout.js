@@ -19,6 +19,27 @@ const playfair = Playfair_Display({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Preload critical background images */}
+        <link
+          rel="preload"
+          as="image"
+          href="/cleaning-background.jpg"
+          media="(min-width: 768px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/bac.jpg"
+          media="(min-width: 768px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/about.jpg"
+          media="(min-width: 768px)"
+        />
+      </head>
       <body
       className={`${roboto.variable} ${playfair.variable}`}
       >
