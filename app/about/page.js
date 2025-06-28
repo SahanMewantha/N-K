@@ -80,19 +80,19 @@ const About = () => {
 
   const expertCards = [
     {
-      imageSrc: "/expert-1.jpg",
+      imageSrc: "/expert-1.webp",
       title: "Professional Training",
       description: "Our experts undergo rigorous training in the latest cleaning techniques and use of eco-friendly products to ensure exceptional results.",
       features: ["Certified Techniques", "Continuous Education"]
     },
     {
-      imageSrc: "/expert-2.jpg",
+      imageSrc: "/expert-2.webp",
       title: "Trusted & Verified",
       description: "Security and trust are our priorities. All team members undergo thorough background checks and in-person interviews.",
       features: ["Reference Checked", "Interviewed In-Person"]
     },
     {
-      imageSrc: "/expert-3.jpg",
+      imageSrc: "/expert-3.webp",
       title: "Insured & Protected",
       description: "For your peace of mind, our team is fully insured and bonded, providing protection for both your property and our staff.",
       features: ["Insured & Bonded", "Liability Coverage"]
@@ -176,7 +176,7 @@ const About = () => {
               <div className="relative">
                 <div className="relative aspect-[4/3] w-full">
                   <Image
-                    src="/about-journey.jpg"
+                    src="/about-journey.webp"
                     alt="Our Cleaning Journey"
                     fill
                     className="rounded-lg shadow-xl object-cover"
@@ -186,7 +186,7 @@ const About = () => {
                 </div>
                 <div className="absolute -bottom-16 -left-16 w-64 aspect-[4/3] hidden lg:block">
                   <Image
-                    src="/about-detail.jpg"
+                    src="/about-detail.webp"
                     alt="Cleaning Detail"
                     fill
                     className="rounded-lg shadow-xl border-4 border-[#333333] object-cover"
@@ -209,7 +209,7 @@ const About = () => {
                   <div className="bg-[#FFEB3B] absolute top-0 left-0 w-full h-full rounded-lg opacity-30 transform rotate-3"></div>
                   <div className="relative z-10 aspect-[3/4] w-full">
                     <Image
-                      src="/owner-portrait.jpg"
+                      src="/owner-portrait.webp"
                       alt="Nicole Kim, Founder of N&K Spotless Solutions"
                       fill
                       className="rounded-lg shadow-lg object-cover"

@@ -24,19 +24,19 @@ export default function RootLayout({ children }) {
         <link
           rel="preload"
           as="image"
-          href="/cleaning-background.jpg"
+          href="/cleaning-background.webp"
           media="(min-width: 768px)"
         />
         <link
           rel="preload"
           as="image"
-          href="/bac.jpg"
+          href="/bac.webp"
           media="(min-width: 768px)"
         />
         <link
           rel="preload"
           as="image"
-          href="/about.jpg"
+          href="/about.webp"
           media="(min-width: 768px)"
         />
       </head>
