@@ -113,13 +113,13 @@ const ServicesSection = () => {
       {/* Optimized Background */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/cleaning-background.jpg"
+          src="/cleaning-background.webp"
           alt="Professional cleaning services background"
           fill
           className="object-cover"
           sizes="100vw"
           quality={75}
-          loading="lazy"
+          loading="eager"
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
         />

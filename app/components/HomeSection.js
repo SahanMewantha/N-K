@@ -17,7 +17,7 @@ const HomeSection = ({ onNavClick }) => {
       {/* Optimized Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/bac.jpg"
+          src="/bac.webp"
           alt="Professional cleaning service - N&K Spotless Solutions"
           fill
           priority // Critical for LCP
@@ -26,6 +26,7 @@ const HomeSection = ({ onNavClick }) => {
           sizes="100vw"
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
+          loading="eager"
         />
       </div>
 

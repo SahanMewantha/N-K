@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import Link from 'next/link';
+import Image from "next/image";
 import {
   Home as HomeIcon,
   Info as AboutIcon,
@@ -181,10 +182,13 @@ const Header = () => {
         <div className="flex items-center space-x-2 cursor-pointer">
           {/* Circular Logo with Gradient */}
           <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
-            <img
-              src="/logo.jpg" // Replace with your logo image path
+            <Image
+              src="/logo.jpeg" // Replace with your logo image path
               alt="Logo"
               className="w-full h-full object-cover"
+              loading="eager"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              fill
             />
           </div>
 

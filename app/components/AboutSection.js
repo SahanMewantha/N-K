@@ -40,14 +40,14 @@ const AboutSection = () => {
           >
             <div className="relative aspect-[4/3] w-full">
               <Image
-                src="/about.jpg"
+                src="/about.webp"
                 alt="N&K Spotless Solutions team providing professional cleaning services"
                 fill
                 className="object-cover rounded-lg shadow-lg"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                loading="lazy"
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..." // Generate this
+                loading="eager"
               />
             </div>
           </motion.div>
