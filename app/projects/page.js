@@ -3,6 +3,7 @@ import React, { useState, useCallback, lazy, Suspense } from "react";
 import { MapPin, Calendar, Check } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Footer from "../components/Footer";
 
 // Lazy load the lightbox component to reduce initial bundle size
 const ImageLightbox = dynamic(() => import("../components/ImageLightbox"), {
@@ -257,25 +258,6 @@ const ProjectsPage = () => {
             ))}
           </div>
         </main>
-
-        {/* Call to Action */}
-        <section className="bg-[#232f8e] py-12 px-4">
-          <div className="container mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to start your cleaning project?
-            </h2>
-            <p className="max-w-2xl mx-auto mb-8 opacity-90">
-              Contact us today to discuss your cleaning needs and get a free quote.
-            </p>
-            <a 
-              href="/contact"
-              className="inline-block bg-[#FFEB3B] text-[#232f8e] px-8 py-3 rounded-md font-bold hover:bg-[#58A6FF] hover:text-white transition-colors duration-300"
-            >
-              Request a Quote
-            </a>
-          </div>
-        </section>
-
         {/* Lazy loaded lightbox */}
         {lightboxOpen && currentProject && (
           <Suspense fallback={null}>
@@ -287,6 +269,7 @@ const ProjectsPage = () => {
             />
           </Suspense>
         )}
+        <Footer />
       </div>
     </>
   );

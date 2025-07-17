@@ -1,19 +1,21 @@
 "use client"
-import { Roboto, Playfair_Display } from 'next/font/google'
+import { Quicksand, Raleway } from 'next/font/google'
 import "./globals.css";
 import dynamic from "next/dynamic";
 import Footer from './components/Footer';
 const Header = dynamic(() => import("./components/Header"), { ssr: false });
 
 
-const roboto = Roboto({
-  weight: ['400', '700'], // Specify the weights you need
-  subsets: ['latin'],     // Specify the character subset (e.g., 'latin')
+const quicksand = Quicksand({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-quicksand',
 });
 
-const playfair = Playfair_Display({
-  weight: ['400', '700'], // Specify the weights you need
-  subsets: ['latin'],     // Specify the character subset (e.g., 'latin')
+const raleway = Raleway({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-raleway',
 });
 
 export default function RootLayout({ children }) {
@@ -41,7 +43,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-      className={`${roboto.variable} ${playfair.variable}`}
+      className={`${quicksand.variable} ${raleway.variable}`}
       >
         <Header/>
         {children}

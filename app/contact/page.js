@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import Head from 'next/head';
+import Footer from "../components/Footer";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -169,9 +170,7 @@ export default function Contact() {
         </div>
       </div>
       
-      <footer className="mt-12 py-6 text-center text-gray-400">
-        <p>&copy; {new Date().getFullYear()} N&K Spotless Solutions. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

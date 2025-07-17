@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Building2, Dumbbell, Briefcase, School, ShoppingBag, Window, Home, Factory, Building, Warehouse, FileCheck, House, Brush, Settings, Columns2 } from "lucide-react";
+import Footer from "../components/Footer";
 
 // Service Card Component
 const ServiceCard = ({ title, index }) => {
@@ -90,7 +91,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="relative py-16 bg-gradient-to-br from-[#454545] via-black to-[#262626]">
+    <section className="relative pt-16 bg-gradient-to-br from-[#454545] via-black to-[#262626]">
       {/* Hexagonal pattern overlay */}
       <div className="absolute inset-0 opacity-5" 
            >
@@ -113,12 +114,13 @@ const ServicesSection = () => {
         </div>
 
         {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {services.map((service, index) => (
             <ServiceCard key={index} title={service} index={index} />
           ))}
         </div>
       </div>
+      <Footer />
     </section>
   );
 };

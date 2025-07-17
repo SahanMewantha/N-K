@@ -7,83 +7,94 @@ import useReducedMotion from "../components/hooks/useReducedMotion";
 const HomeSection = ({ onNavClick }) => {
   const reducedMotion = useReducedMotion();
   const shouldAnimate = !reducedMotion;
+  
   return (
     <section 
-    
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center "
       aria-label="Home section"
     >
-      {/* Optimized Background Image */}
+      {/* Optimized Background with Video Fallback */}
       <div className="absolute inset-0">
         <Image
-          src="/bac.webp"
-          alt="Professional cleaning service - N&K Spotless Solutions"
+          src="/bac1.webp"
+          alt="Professional cleaning service team at work"
           fill
-          priority // Critical for LCP
-          quality={85} 
+          priority
+          quality={90}
           className="object-cover"
           sizes="100vw"
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
-          loading="eager"
         />
       </div>
 
-      
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+      {/* Gradient Overlay with Directional Focus */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/20" />
 
-      {/* Content Container */}
-      <div className="container mx-auto px-4 z-10 text-center">
-        {/* Remove animation or use CSS animations instead of JS */}
+      {/* Content Container with Improved Hierarchy */}
+      <div className="container mx-auto  z-10 text-center max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }} // Reduced duration
+          initial={shouldAnimate ? { opacity: 0, y: 20 } : false}
+          animate={shouldAnimate ? { opacity: 1, y: 0 } : false}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="space-y-6"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Welcome to{' '}
-            <span className="text-[#1941b4] font-roboto block md:inline">
-              N<span className="text-2xl text-yellow-400" aria-label="and">&</span>K Spotless Solutions
+          {/* Logo/Brand Mark could be placed here */}
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight font-quicksand">
+            <span className="block text-gray-100 font-light">Professional</span>
+            <span className="text-white font-bold">
+              Cleaning <span className="text-secondary">Services</span>
             </span>
           </h1>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }} // Reduced delay
-        >
-          <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Professional Cleaning Services - We'll Make It Shine, Every Time.
-          </p>
-        </motion.div>
-
-        {/* Call-to-Action Button */}
-        <div className="flex mt-6 items-center justify-center">
-          <Button 
-            onClick={() => onNavClick("contact")}
-            aria-label="Contact us for cleaning services"
+          <motion.div
+            initial={shouldAnimate ? { opacity: 0 } : false}
+            animate={shouldAnimate ? { opacity: 1 } : false}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Get Free Quote
-          </Button>
-        </div>
+            <p className="text-gray-200 text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed font-raleway">
+              Transform your space with our eco-friendly cleaning solutions
+            </p>
+          </motion.div>
 
-        {/* Add structured data for local business */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "CleaningService",
-              "name": "N&K Spotless Solutions",
-              "slogan": "We'll Make It Shine, Every Time",
-              "image": "/bac.jpg",
-              "url": typeof window !== 'undefined' ? window.location.href : '',
-            })
-          }}
-        />
+          {/* Enhanced CTA Section */}
+          <motion.div
+            initial={shouldAnimate ? { opacity: 0, y: 10 } : false}
+            animate={shouldAnimate ? { opacity: 1, y: 0 } : false}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 items-center justify-center"
+          >
+            <Button 
+              onClick={() => onNavClick("contact")}
+              aria-label="Contact us for cleaning services"
+              className="px-8 py-3 text-lg"
+            >
+              Get Free Estimate
+            </Button>
+            
+          </motion.div>
+        </motion.div>
+
+        {/* Trust Indicators */}
+        
       </div>
+
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CleaningService",
+            "name": "N&K Spotless Solutions",
+            "description": "Professional eco-friendly cleaning services",
+            "image": "/bac.jpg",
+            "url": typeof window !== 'undefined' ? window.location.href : '',
+          })
+        }}
+      />
     </section>
   );
 };

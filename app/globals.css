@@ -3,3 +3,50 @@
 @tailwind utilities;
 
 
+:root {
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-raleway: 'Raleway', sans-serif;
+
+  /* Colors for a modern cleaning service theme */
+  --text: #ffffff;
+  --background: #000000;
+  --primary: #1E4B8C;   /* Aqua blue */
+  --secondary: #FFD700; /* Fresh green */
+  --accent: #5f62c9;    /* Bright orange */
+}
+
+/* Text color utility classes */
+.text-text {
+  color: var(--text);
+}
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.text-accent {
+  color: var(--accent);
+}
+
+/* Background color utility classes */
+.bg-background {
+  background-color: var(--background);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-secondary {
+  background-color: var(--secondary);
+}
+.bg-accent {
+  background-color: var(--accent);
+}
+
+/* Font utility classes */
+.font-quicksand {
+  font-family: var(--font-quicksand);
+}
+.font-raleway {
+  font-family: var(--font-raleway);
+}

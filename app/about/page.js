@@ -133,7 +133,7 @@ const About = () => {
 
       <section
         id="about"
-        className="min-h-screen bg-[#333333] py-16 text-white"
+        className="min-h-screen bg-[#333333] pt-16 text-white"
       >
         {/* Hero Section - Critical for FCP */}
         <div className="relative">
@@ -275,24 +275,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-[#232f8e] to-[#58A6FF] py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-              Ready to Experience the N&K Spotless Difference?
-            </h2>
-            <p className="text-lg md:text-xl text-white max-w-2xl mx-auto mb-8">
-              Let our expert team transform your space into a clean, healthy environment you'll love.
-            </p>
-            <a 
-              href="/contact"
-              className="inline-block bg-[#FFEB3B] hover:bg-yellow-500 text-[#333333] font-bold py-3 px-8 rounded-full text-lg transition duration-300"
-            >
-              Book Your Cleaning Today
-            </a>
-          </div>
-        </div>
+        <Footer/>
       </section>
     </>
   );

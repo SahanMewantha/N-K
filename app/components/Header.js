@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { motion, MotionConfig } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from 'next/link';
 import Image from "next/image";
 import {
@@ -10,47 +10,11 @@ import {
   Mail as ContactIcon,
   Camera as GalleryIcon,
   X,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
+  Menu,
 } from "lucide-react";
 
-const VARIANTS = {
-  top: {
-    open: {
-      rotate: ["0deg", "0deg", "45deg"],
-      top: ["35%", "50%", "50%"],
-    },
-    closed: {
-      rotate: ["45deg", "0deg", "0deg"],
-      top: ["50%", "50%", "35%"],
-    },
-  },
-  middle: {
-    open: {
-      rotate: ["0deg", "0deg", "-45deg"],
-    },
-    closed: {
-      rotate: ["-45deg", "0deg", "0deg"],
-    },
-  },
-  bottom: {
-    open: {
-      rotate: ["0deg", "0deg", "45deg"],
-      bottom: ["35%", "50%", "50%"],
-      left: "50%",
-    },
-    closed: {
-      rotate: ["45deg", "0deg", "0deg"],
-      bottom: ["50%", "50%", "35%"],
-      left: "calc(50% + 10px)",
-    },
-  },
-};
-
 const Header = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -69,96 +33,131 @@ const Header = () => {
     { icon: ContactIcon, label: "Contact", path: "/contact" },
   ];
 
-  const socialItems = [
-    { icon: Facebook, url: "#" },
-    { icon: Instagram, url: "#" },
-    { icon: Linkedin, url: "#" },
-    { icon: Twitter, url: "#" },
-  ];
-
   if (isMobile) {
     return (
       <>
-        <MotionConfig
-          transition={{
-            duration: 0.5,
-            ease: "easeInOut",
-          }}
+        {/* Mobile Header Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-0 left-0 right-0 z-40 backdrop-blur-lg bg-background border-b border-primary/20"
         >
-          <motion.button
-            initial={false}
-            animate={isMenuOpen ? "open" : "closed"}
-            onClick={() => setIsMenuOpen((pv) => !pv)}
-            className="fixed top-4 left-4 z-50 h-12 w-12 rounded-full bg-black/50 flex items-center justify-center"
-          >
-            {isMenuOpen ? (
-              <X className="text-white" />
-            ) : (
-              <>
-                <motion.span
-                  variants={VARIANTS.top}
-                  className="absolute h-1 w-6 bg-white"
-                  style={{ y: "-50%", left: "50%", x: "-50%", top: "35%" }}
+          <div className="flex items-center justify-between p-4">
+            {/* Mobile Logo - Left Side */}
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden bg-secondary shadow-md group-hover:scale-105 transition-transform">
+                <Image
+                  src="/logo.jpeg"
+                  alt="N&K Spotless Solutions Logo"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  fill
                 />
-                <motion.span
-                  variants={VARIANTS.middle}
-                  className="absolute h-1 w-6 bg-white"
-                  style={{
-                    left: "50%",
-                    x: "-50%",
-                    top: "50%",
-                    y: "-50%",
-                  }}
-                />
-                <motion.span
-                  variants={VARIANTS.bottom}
-                  className="absolute h-1 w-4 bg-white"
-                  style={{
-                    x: "-50%",
-                    y: "50%",
-                    bottom: "35%",
-                    left: "calc(50% + 10px)",
-                  }}
-                />
-              </>
-            )}
-          </motion.button>
-        </MotionConfig>
+              </div>
+              <div className="flex flex-col font-quicksand">
+                <span className="text-text font-bold text-lg tracking-tight">N&K Spotless</span>
+                <span className="text-secondary text-xs font-raleway">Cleaning Excellence</span>
+              </div>
+            </Link>
 
+            {/* Hamburger Menu Button - Right Side */}
+            <button
+              onClick={() => setIsMenuOpen((pv) => !pv)}
+              className="p-2 rounded-full hover:bg-primary/20 transition-colors"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? (
+                <X className="text-text" size={24} />
+              ) : (
+                <Menu className="text-text" size={24} />
+              )}
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Mobile Menu - Slides in from right */}
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            className="fixed inset-0 z-40 bg-black/90 text-white"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 z-50 bg-background text-text"
           >
-            <div className="flex flex-col items-center justify-center h-full space-y-8">
-              {navItems.map(({ icon: Icon, label, path }) => (
-                <Link
-                  key={path}
-                  href={path}
-                  onClick={() => setIsMenuOpen(false)} 
-                  className="text-3xl flex items-center space-x-4"
-                >
-                  <Icon size={30} />
-                  <span>{label}</span>
-                </Link>
-              ))}
+            {/* Menu Header with Logo */}
+            <div className="flex items-center justify-between p-4 border-b border-primary/20">
+              <Link href="/" className="flex items-center space-x-3 group" onClick={() => setIsMenuOpen(false)}>
+                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-secondary shadow-md group-hover:scale-105 transition-transform">
+                  <Image
+                    src="/logo.jpeg"
+                    alt="N&K Spotless Solutions Logo"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    fill
+                  />
+                </div>
+                <div className="flex flex-col font-quicksand">
+                  <span className="text-text font-bold text-xl tracking-tight">N&K Spotless</span>
+                  <span className="text-secondary text-sm font-raleway">Cleaning Excellence</span>
+                </div>
+              </Link>
+              
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="text-text" size={20} />
+              </button>
+            </div>
 
-              <div className="flex space-x-6 mt-8">
-                {socialItems.map(({ icon: Icon, url }, index) => (
-                  <motion.a
-                    key={index}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="text-white"
+            {/* Menu Items */}
+            <div className="flex flex-col space-y-2 font-raleway p-4 pt-8">
+              {navItems.map(({ icon: Icon, label, path }, index) => (
+                <motion.div
+                  key={path}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link
+                    href={path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center space-x-4 p-4 rounded-lg hover:bg-primary/10 transition-colors group"
                   >
-                    <Icon size={30} />
-                  </motion.a>
-                ))}
+                    <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center group-hover:bg-secondary/30 transition-colors">
+                      <Icon size={20} className="text-secondary group-hover:text-accent transition-colors" />
+                    </div>
+                    <span className="text-lg text-text group-hover:text-accent transition-colors font-medium">
+                      {label}
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Menu Footer */}
+            <div className="absolute bottom-8 left-4 right-4">
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden bg-secondary/20">
+                    <Image
+                      src="/logo.jpeg"
+                      alt="N&K Spotless Solutions Logo"
+                      className="w-full h-full object-cover"
+                      loading="eager"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      fill
+                    />
+                  </div>
+                  <span className="text-secondary text-sm font-raleway">Professional Cleaning Services</span>
+                </div>
+                <p className="text-text/60 text-xs font-raleway">
+                  Excellence in every detail
+                </p>
               </div>
             </div>
           </motion.div>
@@ -172,65 +171,48 @@ const Header = () => {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-primary/20"
     >
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent" />
+      <nav className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3 md:px-8 md:py-4">
 
-      <nav className="container mx-auto flex justify-between items-center p-4 relative z-10">
-        {/* Logo and Brand Name */}
-        <div className="flex items-center space-x-2 cursor-pointer">
-          {/* Circular Logo with Gradient */}
-          <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
+        {/* Logo and Brand Name - Desktop */}
+        <Link href="/" className="flex items-center space-x-3 group">
+          <div className="relative w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 2xl:w-16 2xl:h-16 rounded-full overflow-hidden bg-secondary shadow-md group-hover:rotate-6 transition-transform">
+
             <Image
-              src="/logo.jpeg" // Replace with your logo image path
-              alt="Logo"
+              src="/logo.jpeg"
+              alt="N&K Spotless Solutions Logo"
               className="w-full h-full object-cover"
               loading="eager"
               sizes="(max-width: 768px) 100vw, 50vw"
               fill
             />
           </div>
-
-          {/* Brand Name with Stacked Text */}
-          <div className="text-white font-bold text-xl flex flex-col">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              N&K
+          <div className="flex flex-col font-quicksand">
+            <span className="text-text font-bold text-lg md:text-xl lg:text-2xl 2xl:text-3xl tracking-tight">
+              N&K Spotless Solutions
             </span>
-            <span className="text-sm text-gray-300">Spotless Solutions</span>
+            <span className="text-secondary text-xs md:text-sm lg:text-base font-raleway">
+              Cleaning Excellence
+            </span>
           </div>
-        </div>
 
-        {/* Navigation Items */}
-        <div className="flex flex-grow justify-center space-x-6">
+        </Link>
+
+        {/* Navigation Items - Centered */}
+        <div className="hidden md:flex flex-grow justify-end space-x-4 lg:space-x-6 2xl:space-x-10 font-raleway">
           {navItems.map(({ icon: Icon, label, path }) => (
             <Link
-            key={path}
-              href={path} // Use the `to` prop for navigation
-              className="text-white flex items-center space-x-2 hover:text-blue-300 transition-all"
+              key={path}
+              href={path}
+              className="text-text text-sm md:text-base lg:text-lg flex items-center space-x-2 hover:text-accent transition-colors group"
             >
-              <Icon size={20} />
-              <span>{label}</span>
+              <Icon size={18} className="text-secondary group-hover:text-accent transition-colors" />
+              <span className="font-medium">{label}</span>
             </Link>
           ))}
         </div>
 
-        {/* Social Media Icons */}
-        <div className="flex space-x-4">
-          {socialItems.map(({ icon: Icon, url }, index) => (
-            <motion.a
-              key={index}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              className="text-white hover:text-blue-400 transition-colors"
-            >
-              <Icon size={24} />
-            </motion.a>
-          ))}
-        </div>
       </nav>
     </motion.header>
   );
