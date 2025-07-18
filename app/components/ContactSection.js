@@ -106,11 +106,11 @@ const ContactSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 id="contact-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#174fde] mb-4">
+          <h2 id="contact-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#174fde] mb-4 font-quicksand">
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full mb-6" aria-hidden="true" />
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto font-raleway">
             Ready for a spotless space? Contact us today for a free quote.
           </p>
         </motion.header>
@@ -125,7 +125,7 @@ const ContactSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-8 p-6"
           >
-            <h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
+            <h3 className="text-2xl font-semibold text-white mb-6 font-quicksand">Contact Information</h3>
             
             <address className="space-y-6 not-italic">
               <a

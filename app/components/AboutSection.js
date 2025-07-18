@@ -4,118 +4,142 @@ import Image from "next/image";
 import useReducedMotion from "../components/hooks/useReducedMotion";
 
 const AboutSection = () => {
-  
   const reducedMotion = useReducedMotion();
   const shouldAnimate = !reducedMotion;
 
-  const imageVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0 }
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
   };
 
-  const textVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0 }
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
   };
 
   return (
     <section
       id="about"
-      className="min-h-screen bg-gradient-to-br from-[#454545] via-black to-[#262626] py-16"
+      className="min-h-screen bg-background py-16 md:py-24"
       aria-labelledby="about-heading"
     >
       <div className="container mx-auto px-4">
-        
         <h2 className="sr-only" id="about-heading">About N&K Spotless Solutions</h2>
         
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-          {/* Optimized Image */}
+        <motion.div
+          initial={shouldAnimate ? "hidden" : false}
+          whileInView={shouldAnimate ? "visible" : false}
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+          className="flex flex-col lg:flex-row items-center gap-12"
+        >
+          {/* Image Section */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={imageVariants}
-            transition={{ duration: 0.6 }}
-            className="w-full md:w-1/2"
+            variants={itemVariants}
+            className="w-full lg:w-1/2"
           >
-            <div className="relative aspect-[4/3] w-full">
+            <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-lg">
               <Image
                 src="/about.webp"
-                alt="N&K Spotless Solutions team providing professional cleaning services"
+                alt="Professional cleaning team from N&K Spotless Solutions at work"
                 fill
-                className="object-cover rounded-lg shadow-lg"
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..." // Generate this
-                loading="eager"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
+                priority
               />
             </div>
           </motion.div>
 
-          {/* Content with better SEO structure */}
+          {/* Content Section */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={textVariants}
-            transition={{ duration: 0.6 }}
-            className="w-full md:w-1/2 text-center md:text-left"
+            variants={itemVariants}
+            className="w-full lg:w-1/2 space-y-6"
           >
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-[#174fde]">
-              About Our Journey
-            </h3>
-            
-            <div className="w-24 h-1 bg-[#ecc106] mx-auto md:mx-0 rounded-full mb-6" />
-            
-            <div className="space-y-4 text-gray-300">
-              <p className="text-base md:text-lg lg:text-xl">
-                <strong className="text-white">N&K Spotless Solutions</strong> was founded in 2024 
-                with a mission to transform spaces through exceptional cleaning services.
-              </p>
+            <div className="font-quicksand">
+              <motion.h3 
+                variants={itemVariants}
+                className="text-3xl md:text-4xl font-bold text-primary"
+              >
+                Our Commitment to Cleanliness
+              </motion.h3>
               
-              <p className="text-base md:text-lg">
-                Our experienced team specializes in both <em>residential</em> and <em>commercial cleaning</em>, 
-                using eco-friendly products and cutting-edge techniques to ensure a spotless, 
-                healthy environment for our clients.
-              </p>
+              <motion.div 
+                variants={itemVariants}
+                className="w-20 h-1 bg-secondary rounded-full my-4"
+              />
               
-              <div className="grid grid-cols-2 gap-4 mt-6 text-sm md:text-base">
-                <div className="text-center md:text-left">
-                  <span className="block text-3xl font-bold text-[#ecc106]">100+</span>
-                  <span className="text-gray-400">Happy Clients</span>
-                </div>
-                <div className="text-center md:text-left">
-                  <span className="block text-3xl font-bold text-[#ecc106]">24/7</span>
-                  <span className="text-gray-400">Available Support</span>
-                </div>
-              </div>
+              <motion.p 
+                variants={itemVariants}
+                className="text-text font-raleway text-lg"
+              >
+                At <strong className="text-primary">N&K Spotless Solutions</strong>, we believe a clean space 
+                is the foundation for health, productivity, and peace of mind.
+              </motion.p>
+              
+              <motion.p 
+                variants={itemVariants}
+                className="text-text/80 font-raleway"
+              >
+                Founded in 2024, we've dedicated ourselves to delivering exceptional cleaning services 
+                using environmentally friendly products and meticulous attention to detail.
+              </motion.p>
+              
+              <motion.p 
+                variants={itemVariants}
+                className="text-text/80 font-raleway"
+              >
+                Our trained professionals handle both residential and commercial spaces, 
+                tailoring our approach to each client's unique needs.
+              </motion.p>
             </div>
 
-            {/* Add trust signals */}
-            <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
-              <span className="px-4 py-2 bg-[#174fde]/20 text-[#174fde] rounded-full text-sm">
-                ✓ Licensed & Insured
-              </span>
-              <span className="px-4 py-2 bg-[#174fde]/20 text-[#174fde] rounded-full text-sm">
-                ✓ Eco-Friendly
-              </span>
-              <span className="px-4 py-2 bg-[#174fde]/20 text-[#174fde] rounded-full text-sm">
-                ✓ Satisfaction Guaranteed
-              </span>
-            </div>
+            {/* Key Features */}
+            <motion.div 
+              variants={containerVariants}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"
+            >
+              {[
+                { icon: "♻️", text: "Eco-friendly products" },
+                { icon: "🛡️", text: "Fully insured" },
+                { icon: "🧹", text: "Deep cleaning specialists" },
+                { icon: "⏱️", text: "Flexible scheduling" }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="flex items-start space-x-3"
+                >
+                  <span className="text-secondary text-xl mt-0.5">{feature.icon}</span>
+                  <span className="text-text font-raleway">{feature.text}</span>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Additional SEO content - hidden visually but readable by search engines */}
+        {/* Hidden SEO content */}
         <div className="sr-only">
-          <h4>Why Choose N&K Spotless Solutions?</h4>
+          <h3>Professional Cleaning Services</h3>
+          <p>N&K Spotless Solutions provides top-quality cleaning services for homes and businesses in the local area.</p>
           <ul>
-            <li>Professional cleaning services since 2024</li>
-            <li>Environmentally friendly cleaning products</li>
-            <li>Trained and background-checked staff</li>
-            <li>Flexible scheduling options</li>
-            <li>Competitive pricing</li>
-            <li>Service areas: [Add your service locations]</li>
+            <li>Residential cleaning services</li>
+            <li>Commercial office cleaning</li>
+            <li>Eco-friendly cleaning products</li>
+            <li>Professional, reliable staff</li>
           </ul>
         </div>
       </div>
@@ -130,11 +154,8 @@ const AboutSection = () => {
             "mainEntity": {
               "@type": "CleaningService",
               "name": "N&K Spotless Solutions",
-              "foundingDate": "2024",
-              "description": "Professional residential and commercial cleaning services using eco-friendly products",
-              "areaServed": "Local Area", 
-              "priceRange": "$$",
-              "knowsAbout": ["Residential Cleaning", "Commercial Cleaning", "Deep Cleaning", "Eco-Friendly Cleaning"]
+              "description": "Professional cleaning services using eco-friendly products",
+              "foundingDate": "2024"
             }
           })
         }}

@@ -192,11 +192,11 @@ const Gallery = () => {
       >
         {/* Header */}
         <header className="text-center mb-12">
-          <h2 id="gallery-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#174fde] mb-4">
+          <h2 id="gallery-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#174fde] mb-4 font-quicksand">
             Our Cleaning Transformations
           </h2>
           <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full mb-6" aria-hidden="true" />
-          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">
+          <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg font-raleway">
             Swipe or drag the slider to see the remarkable difference our professional cleaning services make. 
             Use arrow keys for keyboard navigation.
           </p>
@@ -221,32 +221,14 @@ const Gallery = () => {
                 alt={project.alt}
               />
               <div className="mt-4 text-center">
-                <h3 className="text-white font-semibold text-lg">{project.title}</h3>
-                <p className="text-gray-400 text-sm mt-1">{project.description}</p>
+                <h3 className="text-white font-semibold text-lg font-raleway">{project.title}</h3>
+                <p className="text-gray-400 text-sm mt-1 font-raleway">{project.description}</p>
               </div>
             </motion.article>
           ))}
         </div>
 
-        {/* Call to Action */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-12"
-        >
-          <p className="text-white mb-4 text-lg">
-            Ready to transform your space?
-          </p>
-          <a 
-            href="#contact" 
-            className="inline-block bg-[#174fde] text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-            aria-label="Contact us to schedule cleaning service"
-          >
-            Schedule Your Cleaning
-          </a>
-        </motion.div>
+        
       </motion.div>
 
       {/* Structured Data */}

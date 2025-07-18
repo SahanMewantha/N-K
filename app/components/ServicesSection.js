@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import useReducedMotion from "../components/hooks/useReducedMotion";
 
-// Service Card Component with performance optimizations
 const ServiceCard = ({ title, description, index, shouldAnimate }) => {
   const cardVariants = shouldAnimate ? {
     hidden: { opacity: 0, y: 20 },
@@ -21,19 +20,18 @@ const ServiceCard = ({ title, description, index, shouldAnimate }) => {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
       whileHover={shouldAnimate ? { scale: 1.02 } : {}}
-      className="bg-black/25 backdrop-blur-sm rounded-lg p-6 text-center border border-white/10 hover:bg-black/40 transition-colors cursor-pointer"
+      className="bg-background/80 backdrop-blur rounded-lg p-6 text-center border border-primary/20 hover:bg-primary/10 transition-all cursor-pointer"
       aria-label={`${title} service`}
     >
-      <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{title}</h3>
-      <div className="w-12 h-1 bg-[#fddb12] mx-auto rounded-full mb-3" aria-hidden="true" />
-      <p className="text-gray-300 text-sm">
+      <h3 className="text-lg md:text-xl font-semibold text-text font-quicksand mb-2">{title}</h3>
+      <div className="w-12 h-1 bg-secondary mx-auto rounded-full mb-3" aria-hidden="true" />
+      <p className="text-white text-sm font-raleway">
         {description || `Professional ${title.toLowerCase()} solutions tailored to your needs.`}
       </p>
     </motion.article>
   );
 };
 
-// Main Services Section Component
 const ServicesSection = () => {
   const shouldAnimate = !useReducedMotion();
   
@@ -110,10 +108,10 @@ const ServicesSection = () => {
       className="relative min-h-screen py-16 overflow-hidden"
       aria-labelledby="services-heading"
     >
-      {/* Optimized Background */}
-      <div className="absolute inset-0 -z-10">
+      {/* Background with Gradient Overlay */}
+      <div className="absolute inset-0 -z-10 bg-opacity-90">
         <Image
-          src="/cleaning-background.webp"
+          src="/cleaning-background.jpeg"
           alt="Professional cleaning services background"
           fill
           className="object-cover"
@@ -123,10 +121,9 @@ const ServicesSection = () => {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
       </div>
 
-      {/* Content */}
       <div className="container mx-auto px-4 relative">
         {/* Section Header */}
         <motion.header
@@ -137,11 +134,11 @@ const ServicesSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 id="services-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#174fde] mb-4">
-            Our Professional Cleaning Services
+          <h2 id="services-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-quicksand mb-4">
+            Our Professional Services
           </h2>
-          <div className="w-24 h-1 bg-[#ecc106] mx-auto rounded-full mb-4" aria-hidden="true" />
-          <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+          <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-4" aria-hidden="true" />
+          <p className="text-text max-w-2xl mx-auto text-base md:text-lg font-raleway">
             Comprehensive cleaning solutions for residential, commercial, and industrial properties 
             across the region. All services backed by our satisfaction guarantee.
           </p>
@@ -168,12 +165,12 @@ const ServicesSection = () => {
           transition={{ delay: 0.5 }}
           className="text-center mt-12"
         >
-          <p className="text-white mb-4 text-lg">
+          <p className="text-text mb-4 text-lg font-raleway">
             Need a service not listed? We offer customized cleaning solutions!
           </p>
           <a 
             href="#contact" 
-            className="inline-block bg-[#174fde] text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors font-quicksand font-medium"
             aria-label="Contact us for custom cleaning services"
           >
             Get a Free Quote
