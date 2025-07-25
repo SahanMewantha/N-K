@@ -236,7 +236,7 @@ const ProjectsPage = () => {
             aria-hidden="true"
           />
           <div className="container mx-auto text-center relative z-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Our Projects</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 mt-10">Our Projects</h1>
             <div className="h-1 w-24 bg-[#FFEB3B] mx-auto mb-6" aria-hidden="true" />
             <p className="max-w-2xl mx-auto text-base md:text-lg opacity-90">
               Explore our recent cleaning projects and see the quality of our work.

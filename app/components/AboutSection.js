@@ -92,7 +92,7 @@ const AboutSection = () => {
               
               <motion.p 
                 variants={itemVariants}
-                className="text-text/80 font-raleway"
+                className="text-text font-raleway"
               >
                 Founded in 2024, we've dedicated ourselves to delivering exceptional cleaning services 
                 using environmentally friendly products and meticulous attention to detail.
@@ -100,7 +100,7 @@ const AboutSection = () => {
               
               <motion.p 
                 variants={itemVariants}
-                className="text-text/80 font-raleway"
+                className="text-text font-raleway"
               >
                 Our trained professionals handle both residential and commercial spaces, 
                 tailoring our approach to each client's unique needs.

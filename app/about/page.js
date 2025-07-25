@@ -23,8 +23,8 @@ const ShieldIcon = () => (
 
 // Feature card component
 const FeatureCard = ({ icon, text }) => (
-  <div className="bg-[#444444] p-4 rounded-lg flex items-center gap-3 w-48">
-    <div className="bg-[#58A6FF] rounded-full p-2">
+  <div className="bg-background p-4 rounded-lg flex items-center gap-3 w-48">
+    <div className="bg-accent rounded-full p-2">
       {icon}
     </div>
     <span className="font-medium">{text}</span>
@@ -33,7 +33,7 @@ const FeatureCard = ({ icon, text }) => (
 
 // Expert card component
 const ExpertCard = ({ imageSrc, title, description, features }) => (
-  <div className="bg-[#292929] rounded-lg shadow-lg overflow-hidden border border-[#444444]">
+  <div className="bg-background rounded-lg shadow-lg overflow-hidden border border-[#444444]">
     <div className="relative h-64">
       <Image
         src={imageSrc}
@@ -45,12 +45,12 @@ const ExpertCard = ({ imageSrc, title, description, features }) => (
       />
     </div>
     <div className="p-6">
-      <h3 className="text-2xl font-bold text-[#58A6FF] mb-2">{title}</h3>
-      <p className="mb-4">{description}</p>
+      <h3 className="text-2xl font-bold text-accent mb-2 font-quicksand">{title}</h3>
+      <p className="mb-4 font-raleway">{description}</p>
       <ul className="space-y-2">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center gap-2">
-            <span className="text-[#FFEB3B] font-bold">✓</span> {feature}
+          <li key={index} className="flex items-center gap-2 font-raleway">
+            <span className="text-secondary font-bold ">✓</span> {feature}
           </li>
         ))}
       </ul>
@@ -61,12 +61,12 @@ const ExpertCard = ({ imageSrc, title, description, features }) => (
 // Team quality item component
 const TeamQualityItem = ({ title, description }) => (
   <div className="flex items-start gap-3">
-    <div className="bg-[#58A6FF] rounded-full p-2 mt-1 flex-shrink-0">
+    <div className="bg-secondary rounded-full p-2 mt-1 flex-shrink-0">
       <ShieldIcon />
     </div>
     <div>
-      <h4 className="font-bold text-[#58A6FF]">{title}</h4>
-      <p className="text-sm">{description}</p>
+      <h4 className="font-bold text-text font-quicksand">{title}</h4>
+      <p className="text-sm font-raleway">{description}</p>
     </div>
   </div>
 );
@@ -133,17 +133,17 @@ const About = () => {
 
       <section
         id="about"
-        className="min-h-screen bg-[#333333] pt-16 text-white"
+        className="min-h-screen bg-[#333333] pt-16 text-text"
       >
         {/* Hero Section - Critical for FCP */}
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#232f8e] to-[#58A6FF] rounded-bl-full h-96"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1E4B8C] to-[#5f62c9] rounded-bl-full h-96"></div>
           <div className="container mx-auto px-4 relative">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white pt-16 text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text pt-16 text-center font-quicksand">
               About N&K Spotless Solutions
             </h1>
-            <div className="w-32 h-1 bg-[#FFEB3B] mx-auto rounded-full my-6" aria-hidden="true" />
-            <p className="text-lg md:text-xl text-white text-center max-w-3xl mx-auto">
+            <div className="w-32 h-1 bg-secondary mx-auto rounded-full my-6" aria-hidden="true" />
+            <p className="text-lg md:text-xl text-text text-center max-w-3xl mx-auto font-raleway">
               Your trusted partner for exceptional cleaning services since 2024
             </p>
           </div>
@@ -153,15 +153,15 @@ const About = () => {
         <div className="container mx-auto px-4 mt-24">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="w-full lg:w-1/2">
-              <h2 className="text-4xl font-bold text-[#58A6FF] mb-6 flex relative">Our Journey</h2>
-              <div className="w-24 h-1 bg-[#FFEB3B] rounded-full mb-6" aria-hidden="true" />
+              <h2 className="text-4xl font-bold text-accent mb-6 flex relative">Our Journey</h2>
+              <div className="w-24 h-1 bg-secondary rounded-full mb-6  font-raleway" aria-hidden="true" />
               <p className="text-base md:text-lg mb-6">
                 N&K Spotless Solutions was founded in 2024 with the goal of providing
                 top-notch cleaning services to homes and businesses. Our team is dedicated
                 to creating spotless environments using environmentally friendly products
                 and advanced cleaning techniques.
               </p>
-              <p className="text-base md:text-lg mb-6">
+              <p className="text-base md:text-lg mb-6  font-raleway">
                 Whether you need a deep clean or regular maintenance, we strive to exceed 
                 your expectations with every service. We believe in transparency, reliability,
                 and uncompromising quality.
@@ -200,7 +200,7 @@ const About = () => {
         </div>
 
         {/* Owner Section */}
-        <div className="bg-[#292929] mt-32 py-20">
+        {/* <div className="bg-[#292929] mt-32 py-20">
           <div className="container mx-auto px-4">
             <div className="flex flex-col lg:flex-row items-center gap-12">
               <div className="w-full lg:w-1/3">
@@ -242,14 +242,14 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Experts Section */}
         <div className="container mx-auto px-4 py-20">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#58A6FF] mb-6">Our Cleaning Experts</h2>
-            <div className="w-32 h-1 bg-[#FFEB3B] mx-auto rounded-full mb-6" aria-hidden="true" />
-            <p className="text-base md:text-lg max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6 font-quicksand">Our Cleaning Experts</h2>
+            <div className="w-32 h-1 bg-secondary mx-auto rounded-full mb-6" aria-hidden="true" />
+            <p className="text-base md:text-lg max-w-3xl mx-auto  font-raleway">
               At N&K Spotless Solutions, we assure you that we have hired the best and most
               suitable team to help you achieve your desired outcome. Every single one
               of our teammates is friendly, experienced, and, most importantly,
@@ -265,7 +265,7 @@ const About = () => {
           
           {/* Expert Qualities Summary */}
           <div className="mt-16 bg-[#292929] rounded-lg p-8 shadow-lg border border-[#444444]">
-            <h3 className="text-2xl font-bold text-[#58A6FF] mb-6 text-center">
+            <h3 className="text-2xl font-bold text-accent mb-6 text-center font-quicksand">
               Why Our Team Stands Out
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
