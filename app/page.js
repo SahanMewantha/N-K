@@ -43,13 +43,13 @@ const page = () => {
     
       {/* Loading Screen */}
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
           <Loader />
           <motion.h1
             initial={{ opacity: 0, y: 20 }} // Start hidden and slightly below
             animate={{ opacity: 1, y: 0 }} // Animate to visible and centered
             transition={{ duration: 1, delay: 0.5 }} // Add a delay for effect
-            className="mt-36 text-3xl font-bold text-[#174fde]"
+            className="mt-36 text-3xl font-bold text-primary font-raleway"
           >
             N&K Spotless Solutions
           </motion.h1>
