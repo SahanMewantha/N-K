@@ -5,13 +5,12 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import Footer from "../components/Footer";
 
-// Lazy load the lightbox component to reduce initial bundle size
+// Lazy load the lightbox component
 const ImageLightbox = dynamic(() => import("../components/ImageLightbox"), {
   loading: () => null,
   ssr: false
 });
 
-// Optimize project data structure
 const projects = [
   {
     id: 1,
@@ -69,24 +68,22 @@ const projects = [
   },
 ];
 
-// Feature component to reduce repetition
 const FeatureItem = React.memo(({ feature }) => (
   <div className="flex items-start">
     <div className="mt-1 mr-3 flex-shrink-0">
-      <Check size={16} className="text-[#58A6FF]" aria-hidden="true" />
+      <Check size={16} className="text-primary" aria-hidden="true" />
     </div>
-    <span className="text-sm opacity-90">{feature}</span>
+    <span className="text-sm text-text/80 font-raleway">{feature}</span>
   </div>
 ));
 
 FeatureItem.displayName = 'FeatureItem';
 
-// Gallery item component with lazy loading
 const GalleryImage = React.memo(({ image, index, onClick, projectTitle }) => {
   return (
     <button
       onClick={onClick}
-      className="aspect-square rounded-md overflow-hidden border-2 border-[#444444] hover:border-[#58A6FF] cursor-pointer transition-all duration-200 relative group"
+      className="aspect-square rounded-md overflow-hidden border-2 border-primary/20 hover:border-primary/50 cursor-pointer transition-all duration-200 relative group"
       aria-label={`View ${projectTitle} image ${index + 1}`}
     >
       <Image
@@ -106,36 +103,37 @@ const GalleryImage = React.memo(({ image, index, onClick, projectTitle }) => {
 
 GalleryImage.displayName = 'GalleryImage';
 
-// Project card component
 const ProjectCard = React.memo(({ project, onImageClick }) => {
   const handleImageClick = useCallback((index) => {
     onImageClick(project.id, index);
   }, [project.id, onImageClick]);
 
   return (
-    <article className="bg-[#222222] rounded-lg overflow-hidden shadow-xl">
+    <article className="bg-background backdrop-blur-sm rounded-lg overflow-hidden shadow-lg border border-primary/10">
       {/* Project Header */}
-      <header className="bg-[#232f8e] px-6 py-5 flex justify-between items-center">
-        <h2 className="text-2xl font-bold">{project.title}</h2>
-        <div className="bg-[#333333] px-3 py-1 rounded-full text-[#FFEB3B] text-sm font-medium">
-          Completed
+      <header className="bg-primary px-6 py-5">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold text-white font-quicksand">{project.title}</h2>
+          <div className="bg-background px-3 py-1 rounded-full text-secondary font-medium font-quicksand">
+            Completed
+          </div>
         </div>
       </header>
 
       {/* Project Content */}
       <div className="p-6">
-        <div className="flex flex-wrap items-center gap-4 mb-6 text-sm">
-          <div className="flex items-center">
-            <MapPin size={16} className="text-[#58A6FF] mr-1" aria-hidden="true" />
+        <div className="flex flex-wrap items-center gap-4 mb-6 text-sm font-raleway">
+          <div className="flex items-center text-text/80">
+            <MapPin size={16} className="text-primary mr-1" aria-hidden="true" />
             <span>{project.location}</span>
           </div>
-          <div className="flex items-center">
-            <Calendar size={16} className="text-[#58A6FF] mr-1" aria-hidden="true" />
+          <div className="flex items-center text-text/80">
+            <Calendar size={16} className="text-primary mr-1" aria-hidden="true" />
             <time>{project.date}</time>
           </div>
         </div>
 
-        <p className="mb-6 text-[#FFFFFF] opacity-90">{project.description}</p>
+        <p className="mb-6 text-text/80 font-raleway">{project.description}</p>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
@@ -146,7 +144,7 @@ const ProjectCard = React.memo(({ project, onImageClick }) => {
 
         {/* Image Gallery */}
         <section aria-labelledby={`gallery-${project.id}`}>
-          <h3 id={`gallery-${project.id}`} className="text-xl font-semibold mb-4 text-[#FFEB3B]">
+          <h3 id={`gallery-${project.id}`} className="text-xl font-semibold mb-4 text-secondary font-quicksand">
             Project Gallery
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8">
@@ -161,6 +159,16 @@ const ProjectCard = React.memo(({ project, onImageClick }) => {
             ))}
           </div>
         </section>
+
+        {/* Testimonial */}
+        {project.testimonial && (
+          <div className="mt-6 pt-6 border-t border-primary/10">
+            <blockquote className="italic text-text/80 font-raleway mb-2">
+              "{project.testimonial.text}"
+            </blockquote>
+            <p className="text-primary font-medium font-quicksand">— {project.testimonial.author}</p>
+          </div>
+        )}
       </div>
     </article>
   );
@@ -173,7 +181,6 @@ const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Optimize event handlers with useCallback
   const openLightbox = useCallback((projectId, imageIndex) => {
     const project = projects.find((p) => p.id === projectId);
     setCurrentProject(project);
@@ -224,21 +231,15 @@ const ProjectsPage = () => {
         }}
       />
 
-      <div className="bg-[#333333] min-h-screen text-[#FFFFFF]">
-        {/* Hero Section - Optimized for FCP */}
-        <section className="relative py-20 px-4 bg-gradient-to-br from-[#232f8e] to-black">
-          <div 
-            className="absolute inset-0 opacity-10" 
-            style={{ 
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15L30 0z' fill='%2358A6FF' fill-opacity='0.5' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-              backgroundSize: "60px 60px" 
-            }}
-            aria-hidden="true"
-          />
+      <div className="min-h-screen bg-background text-text">
+        {/* Hero Section */}
+        <section className="relative py-20 px-4 bg-gradient-to-br from-[#1E4B8C] to-[#141414]">
           <div className="container mx-auto text-center relative z-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 mt-10">Our Projects</h1>
-            <div className="h-1 w-24 bg-[#FFEB3B] mx-auto mb-6" aria-hidden="true" />
-            <p className="max-w-2xl mx-auto text-base md:text-lg opacity-90">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 mt-10 font-quicksand">
+              Our Cleaning Projects
+            </h1>
+            <div className="h-1 w-24 bg-secondary mx-auto mb-6" aria-hidden="true" />
+            <p className="max-w-2xl mx-auto text-base md:text-lg text-text/80 font-raleway">
               Explore our recent cleaning projects and see the quality of our work.
               We take pride in delivering exceptional cleaning services for various
               types of facilities.
@@ -258,6 +259,7 @@ const ProjectsPage = () => {
             ))}
           </div>
         </main>
+
         {/* Lazy loaded lightbox */}
         {lightboxOpen && currentProject && (
           <Suspense fallback={null}>
