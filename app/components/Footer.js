@@ -130,10 +130,10 @@ const Footer = () => {
                 <div>
                   <p className="text-gray-300 text-sm">Phone</p>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+61413624670"
                     className="text-green-400 hover:text-green-300 transition-colors text-sm"
                   >
-                    (555) 123-4567
+                    (041) 362-4670
                   </a>
                 </div>
               </div>
@@ -179,7 +179,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 pt-6 text-center">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <p className="text-gray-400 text-sm font-raleway">
-              © 2025 N&K Spotless Solutions. All Rights Reserved.
+              © {new Date().getFullYear()} N&K Spotless Solutions. All Rights Reserved.
             </p>
             <div className="flex space-x-4 text-sm font-raleway">
               <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">

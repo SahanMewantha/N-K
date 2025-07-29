@@ -14,9 +14,9 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const CONTACT_INFO = {
-    phone: "+1234567890",
-    phoneDisplay: "+1 (234) 567-890",
-    whatsapp: "1234567890",
+    phone: "+61413624670",
+    phoneDisplay: "041 362 4670",
+    whatsapp: "+61413624670",
     email: "nkspotlesssolutions@gmail.com",
     address: "123 Clean Street, Spotless City"
   };
