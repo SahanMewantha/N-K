@@ -84,50 +84,50 @@ const ContactSection = () => {
   return (
     <section 
       id="contact" 
-      className="min-h-screen py-20 bg-background"
+      className="min-h-screen py-12 sm:py-16 lg:py-20 bg-background"
       aria-labelledby="contact-heading"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6">
         {/* Section Header */}
         <motion.header
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-primary font-quicksand mb-4">
+          <h2 id="contact-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-quicksand mb-3 sm:mb-4 px-2">
             Contact N&K Spotless Solutions
           </h2>
-          <div className="w-20 h-1 bg-secondary mx-auto rounded-full mb-6" aria-hidden="true" />
-          <p className="text-text max-w-2xl mx-auto text-lg font-raleway">
+          <div className="w-16 sm:w-20 h-1 bg-secondary mx-auto rounded-full mb-4 sm:mb-6" aria-hidden="true" />
+          <p className="text-text max-w-2xl mx-auto text-base sm:text-lg font-raleway px-4">
             Get your free quote today or ask about our professional cleaning services
           </p>
         </motion.header>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
-            <div className="bg-primary/5 p-8 rounded-xl border border-primary/10">
-              <h3 className="text-2xl font-bold text-text font-quicksand mb-6">Our Contact Details</h3>
+            <div className="bg-primary/5 p-4 sm:p-6 lg:p-8 rounded-xl border border-primary/10">
+              <h3 className="text-xl sm:text-2xl font-bold text-text font-quicksand mb-4 sm:mb-6">Our Contact Details</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <Phone size={20} />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-primary/10 p-2 sm:p-3 rounded-full text-primary flex-shrink-0">
+                    <Phone size={16} className="sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <p className="text-sm text-text font-raleway">Phone</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-text font-raleway">Phone</p>
                     <a 
                       href={`tel:${CONTACT_INFO.phone}`}
-                      className="text-lg font-medium text-text hover:text-primary transition-colors font-quicksand"
+                      className="text-base sm:text-lg font-medium text-text hover:text-primary transition-colors font-quicksand break-all"
                     >
                       {CONTACT_INFO.phoneDisplay}
                     </a>
@@ -135,15 +135,15 @@ const ContactSection = () => {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <Mail size={20} />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-primary/10 p-2 sm:p-3 rounded-full text-primary flex-shrink-0">
+                    <Mail size={16} className="sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <p className="text-sm text-text font-raleway">Email</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-text font-raleway">Email</p>
                     <a 
                       href={`mailto:${CONTACT_INFO.email}`}
-                      className="text-lg font-medium text-text hover:text-primary transition-colors font-quicksand"
+                      className="text-base sm:text-lg font-medium text-text hover:text-primary transition-colors font-quicksand break-all"
                     >
                       {CONTACT_INFO.email}
                     </a>
@@ -151,17 +151,17 @@ const ContactSection = () => {
                 </div>
 
                 {/* WhatsApp */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <MessageSquare size={20} />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-primary/10 p-2 sm:p-3 rounded-full text-primary flex-shrink-0">
+                    <MessageSquare size={16} className="sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <p className="text-sm text-text font-raleway">WhatsApp</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-text font-raleway">WhatsApp</p>
                     <a 
                       href={`https://wa.me/${CONTACT_INFO.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg font-medium text-text hover:text-primary transition-colors font-quicksand"
+                      className="text-base sm:text-lg font-medium text-text hover:text-primary transition-colors font-quicksand break-all"
                     >
                       {CONTACT_INFO.phoneDisplay}
                     </a>
@@ -169,16 +169,16 @@ const ContactSection = () => {
                 </div>
 
                 {/* Address */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-primary/10 p-2 sm:p-3 rounded-full text-primary flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                   </div>
-                  <div>
-                    <p className="text-sm text-text font-raleway">Address</p>
-                    <p className="text-lg font-medium text-text font-quicksand">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm text-text font-raleway">Address</p>
+                    <p className="text-base sm:text-lg font-medium text-text font-quicksand">
                       {CONTACT_INFO.address}
                     </p>
                   </div>
@@ -186,11 +186,11 @@ const ContactSection = () => {
               </div>
 
               {/* Business Hours */}
-              <div className="mt-8 pt-6 border-t border-primary">
-                <h4 className="text-lg font-semibold text-text font-quicksand mb-3">Business Hours</h4>
-                <ul className="space-y-2 font-raleway">
+              <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-primary">
+                <h4 className="text-base sm:text-lg font-semibold text-text font-quicksand mb-3">Business Hours</h4>
+                <ul className="space-y-2 font-raleway text-sm sm:text-base">
                   <li className="flex justify-between text-text">
-                    <span>Monday - Friday</span>
+                    <span>Mon - Fri</span>
                     <span>8:00 AM - 6:00 PM</span>
                   </li>
                   <li className="flex justify-between text-text">
@@ -215,11 +215,11 @@ const ContactSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="bg-primary/5 p-8 rounded-xl border border-primary/10"
+            className="bg-primary/5 p-4 sm:p-6 lg:p-8 rounded-xl border border-primary/10"
           >
-            <h3 className="text-2xl font-bold text-text font-quicksand mb-6">Send Us a Message</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-text font-quicksand mb-4 sm:mb-6">Send Us a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-text mb-2 font-raleway">
                   Your Name <span className="text-secondary">*</span>
@@ -233,7 +233,7 @@ const ContactSection = () => {
                   placeholder="John Smith" 
                   required
                   aria-required="true"
-                  className="w-full px-4 py-3 bg-background border border-primary/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text placeholder:text-text/50 font-raleway"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-background border border-primary/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text placeholder:text-text/50 font-raleway text-sm sm:text-base"
                 />
               </div>
               
@@ -250,7 +250,7 @@ const ContactSection = () => {
                   placeholder="john@example.com" 
                   required
                   aria-required="true"
-                  className="w-full px-4 py-3 bg-background border border-primary/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text placeholder:text-text/50 font-raleway"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-background border border-primary/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text placeholder:text-text/50 font-raleway text-sm sm:text-base"
                 />
               </div>
               
@@ -264,17 +264,17 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   placeholder="Tell us about your cleaning needs..." 
-                  rows="5"
+                  rows="4"
+                  className="sm:rows-5 w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-background border border-primary/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text placeholder:text-text/50 resize-none font-raleway text-sm sm:text-base min-h-[100px] sm:min-h-[120px]"
                   required
                   aria-required="true"
-                  className="w-full px-4 py-3 bg-background border border-primary/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text placeholder:text-text/50 resize-none font-raleway"
                 />
               </div>
 
               {/* Status Messages */}
               {formStatus.message && (
                 <div 
-                  className={`p-4 rounded-lg text-sm font-raleway ${
+                  className={`p-3 sm:p-4 rounded-lg text-xs sm:text-sm font-raleway ${
                     formStatus.type === "success" 
                       ? "bg-secondary/20 text-secondary border border-secondary/30" 
                       : "bg-red-500/20 text-red-300 border border-red-500/30"
@@ -288,12 +288,12 @@ const ContactSection = () => {
               <button 
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 disabled:bg-primary/50 disabled:cursor-not-allowed text-white px-6 py-4 rounded-lg flex items-center justify-center gap-2 transition-all font-quicksand font-semibold"
+                className="w-full bg-primary hover:bg-primary/90 disabled:bg-primary/50 disabled:cursor-not-allowed text-white px-4 sm:px-6 py-3 sm:py-4 rounded-lg flex items-center justify-center gap-2 transition-all font-quicksand font-semibold text-sm sm:text-base"
                 aria-label="Send message"
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -301,7 +301,7 @@ const ContactSection = () => {
                   </>
                 ) : (
                   <>
-                    <Send size={20} />
+                    <Send size={16} className="sm:w-5 sm:h-5" />
                     <span>Send Message</span>
                   </>
                 )}
