@@ -15,8 +15,6 @@ const page = () => {
   const scrollRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true); // State to manage loading state
   
-
-  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false); 
