@@ -111,7 +111,7 @@ const ServicesSection = () => {
       {/* Background with Gradient Overlay */}
       <div className="absolute inset-0 -z-10 bg-opacity-90">
         <Image
-          src="/cleaning-background.jpeg"
+          src="/clea-background.jpeg"
           alt="Professional cleaning services background"
           fill
           className="object-cover"

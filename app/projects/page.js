@@ -30,7 +30,7 @@ const projects = [
     testimonial: {
       text:
         "The team delivered exceptional cleaning services for our office space. Every corner was spotless, and the attention to detail was impressive.",
-      author: "David Thompson, Office Manager",
+      author: "",
     },
     images: Array.from({ length: 10 }, (_, i) => ({
       src: `/office-cleaning-${i + 1}.jpeg`,
@@ -57,7 +57,7 @@ const projects = [
     testimonial: {
       text:
         "Their specialized approach to cleaning our childcare center gave us peace of mind knowing that our facility is not just clean, but safe for our little ones.",
-      author: "Sarah Williams, Center Director",
+      author: "",
     },
     images: Array.from({ length: 4 }, (_, i) => ({
       src: `/child-care-cleaning-${i + 1}.jpeg`,
@@ -66,6 +66,34 @@ const projects = [
     })),
     thumbnail: "/child-care-cleaning-1.jpeg"
   },
+  {
+  id: 3,
+  title: "Industrial Cleaning",
+  location: "Dandenong South",
+  date: "March 2025",
+  description:
+    "Comprehensive industrial cleaning for a large manufacturing facility in Dandenong South. The project involved heavy-duty cleaning equipment, safety protocols, and high-standard sanitation procedures for machinery and surfaces.",
+  features: [
+    "High-pressure equipment cleaning",
+    "Oil and grease removal from floors",
+    "Machinery sanitation and dust removal",
+    "Warehouse floor scrubbing and polishing",
+    "Cleaning of industrial exhaust and vents",
+    "Safe chemical usage adhering to compliance"
+  ],
+  testimonial: {
+    text:
+      "Their team handled the industrial cleaning with utmost professionalism. The facility was spotless and met all our compliance requirements.",
+    author: "Operations Manager, Dandenong South"
+  },
+  images: Array.from({ length: 11 }, (_, i) => ({
+    src: `/industrial-clean-${i + 1}.jpg`,
+    width: 800,
+    height: 600
+  })),
+  thumbnail: "/industrial-clean-1.jpeg"
+}
+
 ];
 
 const FeatureItem = React.memo(({ feature }) => (
