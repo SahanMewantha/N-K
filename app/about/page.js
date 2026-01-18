@@ -1,74 +1,146 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Footer from "../components/Footer";
+import { motion } from "framer-motion";
 
-// Reusable SVG components to reduce DOM size
+// Animation variants for reuse
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0 }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 }
+};
+
+// Reusable SVG components
 const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#333333]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#1E4B8C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
   </svg>
 );
 
 const ClockIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#333333]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#1E4B8C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const ShieldIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#333333]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#1E4B8C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
   </svg>
 );
 
-// Feature card component
+// Feature card component with hover animation
 const FeatureCard = ({ icon, text }) => (
-  <div className="bg-background p-4 rounded-lg flex items-center gap-3 w-48">
-    <div className="bg-accent rounded-full p-2">
+  <motion.div
+    className="bg-gradient-to-br from-[#1E4B8C]/10 to-[#5f62c9]/5 backdrop-blur-sm p-5 rounded-xl flex items-center gap-4 border border-[#1E4B8C]/20 shadow-lg"
+    whileHover={{
+      scale: 1.05,
+      boxShadow: "0 20px 40px rgba(30, 75, 140, 0.3)",
+      borderColor: "rgba(255, 215, 0, 0.5)"
+    }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+  >
+    <div className="bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full p-3 shadow-md">
       {icon}
     </div>
-    <span className="font-medium">{text}</span>
-  </div>
+    <span className="font-semibold text-white text-lg">{text}</span>
+  </motion.div>
 );
 
-// Expert card component
-const ExpertCard = ({ imageSrc, title, description, features }) => (
-  <div className="bg-background rounded-lg shadow-lg overflow-hidden border border-[#444444]">
-    <div className="relative h-64">
-      <Image
-        src={imageSrc}
-        alt={title}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        loading="lazy"
-      />
+// Expert card component with animations
+const ExpertCard = ({ imageSrc, title, description, features, index }) => (
+  <motion.div
+    className="group bg-gradient-to-b from-[#1a1a2e] to-[#16162a] rounded-2xl shadow-2xl overflow-hidden border border-[#5f62c9]/30 hover:border-[#FFD700]/50 transition-colors duration-300"
+    variants={fadeInUp}
+    whileHover={{ y: -10 }}
+    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+  >
+    <div className="relative h-64 overflow-hidden">
+      <motion.div
+        className="absolute inset-0"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.4 }}
+      >
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
+        />
+      </motion.div>
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e] via-transparent to-transparent opacity-60" />
+      {/* Gold accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
     </div>
     <div className="p-6">
-      <h3 className="text-2xl font-bold text-accent mb-2 font-quicksand">{title}</h3>
-      <p className="mb-4 font-raleway">{description}</p>
-      <ul className="space-y-2">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-center gap-2 font-raleway">
-            <span className="text-secondary font-bold ">✓</span> {feature}
+      <h3 className="text-2xl font-bold text-[#FFD700] mb-3 font-quicksand">{title}</h3>
+      <p className="text-gray-300 mb-5 font-raleway leading-relaxed">{description}</p>
+      <ul className="space-y-3">
+        {features.map((feature, idx) => (
+          <li key={idx} className="flex items-center gap-3 font-raleway text-gray-200">
+            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-[#FFD700] to-[#FFA500]">
+              <svg className="w-3 h-3 text-[#1E4B8C]" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            </span>
+            {feature}
           </li>
         ))}
       </ul>
     </div>
-  </div>
+  </motion.div>
 );
 
-// Team quality item component
-const TeamQualityItem = ({ title, description }) => (
-  <div className="flex items-start gap-3">
-    <div className="bg-secondary rounded-full p-2 mt-1 flex-shrink-0">
+// Team quality item component with animation
+const TeamQualityItem = ({ title, description, index }) => (
+  <motion.div
+    className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-br from-[#1E4B8C]/10 to-transparent backdrop-blur-sm border border-[#5f62c9]/20 hover:border-[#FFD700]/30 transition-colors duration-300"
+    variants={fadeInUp}
+    whileHover={{ scale: 1.02, x: 5 }}
+    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+  >
+    <motion.div
+      className="bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full p-3 mt-1 flex-shrink-0 shadow-lg"
+      whileHover={{ rotate: 360 }}
+      transition={{ duration: 0.5 }}
+    >
       <ShieldIcon />
-    </div>
+    </motion.div>
     <div>
-      <h4 className="font-bold text-text font-quicksand">{title}</h4>
-      <p className="text-sm font-raleway">{description}</p>
+      <h4 className="font-bold text-white text-lg font-quicksand">{title}</h4>
+      <p className="text-gray-400 text-sm font-raleway mt-1">{description}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 const About = () => {
@@ -133,149 +205,251 @@ const About = () => {
 
       <section
         id="about"
-        className="min-h-screen bg-[#333333] pt-16 text-text"
+        className="min-h-screen bg-gradient-to-b from-[#0a0a14] via-[#141428] to-[#0a0a14] pt-16 text-white overflow-hidden"
       >
-        {/* Hero Section - Critical for FCP */}
+        {/* Hero Section with animated gradient */}
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1E4B8C] to-[#5f62c9] rounded-bl-full h-96"></div>
-          <div className="container mx-auto px-4 relative">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text pt-16 text-center font-quicksand">
-              About N&K Spotless Solutions
-            </h1>
-            <div className="w-32 h-1 bg-secondary mx-auto rounded-full my-6" aria-hidden="true" />
-            <p className="text-lg md:text-xl text-text text-center max-w-3xl mx-auto font-raleway">
-              Your trusted partner for exceptional cleaning services since 2024
-            </p>
+          {/* Animated background gradient */}
+          <div className="absolute inset-0 h-[500px]">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1E4B8C]/40 via-[#5f62c9]/30 to-[#1E4B8C]/40 rounded-bl-[100px] md:rounded-bl-[200px]" />
+            {/* Decorative floating elements */}
+            <motion.div
+              className="absolute top-20 right-10 w-32 h-32 rounded-full bg-[#FFD700]/10 blur-3xl"
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-10 left-20 w-48 h-48 rounded-full bg-[#5f62c9]/20 blur-3xl"
+              animate={{
+                y: [0, 20, 0],
+                opacity: [0.2, 0.4, 0.2]
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <motion.div
+              className="text-center pt-20 pb-16"
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              <motion.h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-[#FFD700] to-white bg-clip-text text-transparent font-quicksand leading-tight"
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
+              >
+                About N&K Spotless Solutions
+              </motion.h1>
+
+              <motion.div
+                className="w-32 h-1.5 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] mx-auto rounded-full my-8"
+                variants={scaleIn}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                aria-hidden="true"
+              />
+
+              <motion.p
+                className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto font-raleway leading-relaxed"
+                variants={fadeInUp}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Your trusted partner for exceptional cleaning services since 2024
+              </motion.p>
+            </motion.div>
           </div>
         </div>
 
         {/* Company Journey Section */}
-        <div className="container mx-auto px-4 mt-24">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-4xl font-bold text-accent mb-6 flex relative">Our Journey</h2>
-              <div className="w-24 h-1 bg-secondary rounded-full mb-6  font-raleway" aria-hidden="true" />
-              <p className="text-base md:text-lg mb-6">
+        <div className="container mx-auto px-4 mt-16 md:mt-24">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Content - Left side */}
+            <motion.div
+              className="w-full lg:w-1/2"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={staggerContainer}
+            >
+              <motion.h2
+                className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent mb-6 font-quicksand"
+                variants={fadeInLeft}
+              >
+                Our Journey
+              </motion.h2>
+
+              <motion.div
+                className="w-24 h-1.5 bg-gradient-to-r from-[#1E4B8C] to-[#5f62c9] rounded-full mb-8"
+                variants={scaleIn}
+                aria-hidden="true"
+              />
+
+              <motion.p
+                className="text-base md:text-lg text-gray-300 mb-6 leading-relaxed font-raleway"
+                variants={fadeInLeft}
+              >
                 N&K Spotless Solutions was founded in 2024 with the goal of providing
                 top-notch cleaning services to homes and businesses. Our team is dedicated
                 to creating spotless environments using environmentally friendly products
                 and advanced cleaning techniques.
-              </p>
-              <p className="text-base md:text-lg mb-6  font-raleway">
-                Whether you need a deep clean or regular maintenance, we strive to exceed 
+              </motion.p>
+
+              <motion.p
+                className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed font-raleway"
+                variants={fadeInLeft}
+              >
+                Whether you need a deep clean or regular maintenance, we strive to exceed
                 your expectations with every service. We believe in transparency, reliability,
                 and uncompromising quality.
-              </p>
-              <div className="flex flex-wrap gap-4 mt-8">
+              </motion.p>
+
+              {/* Feature Cards */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10"
+                variants={staggerContainer}
+              >
                 {features.map((feature, index) => (
-                  <FeatureCard key={index} icon={feature.icon} text={feature.text} />
+                  <motion.div key={index} variants={fadeInUp}>
+                    <FeatureCard icon={feature.icon} text={feature.text} />
+                  </motion.div>
                 ))}
-              </div>
-            </div>
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="relative aspect-[4/3] w-full">
+              </motion.div>
+            </motion.div>
+
+            {/* Images - Right side */}
+            <motion.div
+              className="w-full lg:w-1/2"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.div
+                className="relative"
+                variants={fadeInRight}
+                transition={{ duration: 0.6 }}
+              >
+                {/* Main Image with floating animation */}
+                <motion.div
+                  className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-[#5f62c9]/30"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
                   <Image
                     src="/about-journey.webp"
                     alt="Our Cleaning Journey"
                     fill
-                    className="rounded-lg shadow-xl object-cover"
+                    className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority // Important for LCP
+                    priority
                   />
-                </div>
-                <div className="absolute -bottom-16 -left-16 w-64 aspect-[4/3] hidden lg:block">
-                  <Image
-                    src="/about-detail.webp"
-                    alt="Cleaning Detail"
-                    fill
-                    className="rounded-lg shadow-xl border-4 border-[#333333] object-cover"
-                    sizes="256px"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E4B8C]/30 to-transparent" />
+                </motion.div>
 
-        {/* Owner Section */}
-        {/* <div className="bg-[#292929] mt-32 py-20">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col lg:flex-row items-center gap-12">
-              <div className="w-full lg:w-1/3">
-                <div className="relative">
-                  <div className="bg-[#232f8e] absolute top-0 left-0 w-full h-full rounded-lg opacity-60 transform -rotate-3"></div>
-                  <div className="bg-[#FFEB3B] absolute top-0 left-0 w-full h-full rounded-lg opacity-30 transform rotate-3"></div>
-                  <div className="relative z-10 aspect-[3/4] w-full">
+                {/* Secondary Image */}
+                <motion.div
+                  className="absolute -bottom-12 -left-8 w-48 md:w-64 aspect-[4/3] hidden lg:block"
+                  initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                >
+                  <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl border-4 border-[#FFD700]/50">
                     <Image
-                      src="/owner-portrait.webp"
-                      alt="Nicole Kim, Founder of N&K Spotless Solutions"
+                      src="/about-detail.webp"
+                      alt="Cleaning Detail"
                       fill
-                      className="rounded-lg shadow-lg object-cover"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover"
+                      sizes="256px"
                       loading="lazy"
                     />
                   </div>
-                </div>
-              </div>
-              <div className="w-full lg:w-2/3">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#58A6FF] mb-6">A Word from Our Owner</h2>
-                <div className="w-24 h-1 bg-[#FFEB3B] rounded-full mb-6" aria-hidden="true" />
-                <div className="relative">
-                  <svg className="absolute top-0 left-0 h-12 w-12 text-[#58A6FF] opacity-20 transform -translate-x-6 -translate-y-6" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                  </svg>
-                  <blockquote className="space-y-4">
-                    <p className="text-base md:text-lg italic pl-4">
-                      "When I started N&K Spotless Solutions, I had one mission in mind: to deliver cleaning services that I would want for my own home. Our company was built on the foundation of trust, excellence, and attention to detail."
-                    </p>
-                    <p className="text-base md:text-lg italic pl-4">
-                      "What sets us apart is our commitment to treating your space as if it were our own. We understand that inviting someone into your home or business requires trust, and we honor that trust by delivering results that exceed expectations."
-                    </p>
-                    <p className="text-base md:text-lg italic pl-4">
-                      "Our team is carefully selected, thoroughly vetted, and continuously trained to ensure that when you choose N&K Spotless Solutions, you're getting the very best in the industry."
-                    </p>
-                    <cite className="text-xl font-bold text-[#58A6FF] pl-4 not-italic">— Nicole Kim, Founder</cite>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+                </motion.div>
 
-        {/* Experts Section */}
-        <div className="container mx-auto px-4 py-20">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-accent mb-6 font-quicksand">Our Cleaning Experts</h2>
-            <div className="w-32 h-1 bg-secondary mx-auto rounded-full mb-6" aria-hidden="true" />
-            <p className="text-base md:text-lg max-w-3xl mx-auto  font-raleway">
-              At N&K Spotless Solutions, we assure you that we have hired the best and most
-              suitable team to help you achieve your desired outcome. Every single one
-              of our teammates is friendly, experienced, and, most importantly,
-              trustworthy.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {expertCards.map((card, index) => (
-              <ExpertCard key={index} {...card} />
-            ))}
-          </div>
-          
-          {/* Expert Qualities Summary */}
-          <div className="mt-16 bg-[#292929] rounded-lg p-8 shadow-lg border border-[#444444]">
-            <h3 className="text-2xl font-bold text-accent mb-6 text-center font-quicksand">
-              Why Our Team Stands Out
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {teamQualities.map((quality, index) => (
-                <TeamQualityItem key={index} {...quality} />
-              ))}
-            </div>
+                {/* Decorative accent */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-[#FFD700]/20 to-[#FFA500]/10 rounded-full blur-2xl" />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-        <Footer/>
+
+        {/* Experts Section */}
+        <div className="container mx-auto px-4 py-24 md:py-32">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={staggerContainer}
+          >
+            <motion.h2
+              className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#FFD700] via-white to-[#FFD700] bg-clip-text text-transparent mb-6 font-quicksand"
+              variants={fadeInUp}
+            >
+              Our Cleaning Experts
+            </motion.h2>
+
+            <motion.div
+              className="w-32 h-1.5 bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FFD700] mx-auto rounded-full mb-8"
+              variants={scaleIn}
+              aria-hidden="true"
+            />
+
+            <motion.p
+              className="text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto font-raleway leading-relaxed"
+              variants={fadeInUp}
+            >
+              At N&K Spotless Solutions, we assure you that we have hired the best and most
+              suitable team to help you achieve your desired outcome. Every single one
+              of our teammates is friendly, experienced, and, most importantly, trustworthy.
+            </motion.p>
+          </motion.div>
+
+          {/* Expert Cards Grid */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
+            {expertCards.map((card, index) => (
+              <ExpertCard key={index} {...card} index={index} />
+            ))}
+          </motion.div>
+
+          {/* Team Qualities Section */}
+          <motion.div
+            className="mt-20 bg-gradient-to-br from-[#1a1a2e]/80 to-[#0a0a14]/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-[#5f62c9]/20"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+          >
+            <motion.h3
+              className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#FFD700] to-[#FFA500] bg-clip-text text-transparent mb-10 text-center font-quicksand"
+              variants={fadeInUp}
+            >
+              Why Our Team Stands Out
+            </motion.h3>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              variants={staggerContainer}
+            >
+              {teamQualities.map((quality, index) => (
+                <TeamQualityItem key={index} {...quality} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+
+        <Footer />
       </section>
     </>
   );
